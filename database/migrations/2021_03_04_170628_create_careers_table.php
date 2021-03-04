@@ -18,7 +18,7 @@ class CreateCareersTable extends Migration
             $table->string('name');
             $table->string('code');
             $table->text('description');
-            $table->foreign('term_id')->references('id')->on('terms');
+            $table->foreignId('term_id')->constrained('terms');
             $table->timestamps();
         });
     }

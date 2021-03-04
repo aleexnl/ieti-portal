@@ -15,7 +15,7 @@ class CreateMpsTable extends Migration
     {
         Schema::create('mps', function (Blueprint $table) {
             $table->id();
-            $table->foreign('career_id')->references('id')->on('careers');
+            $table->foreignId('career_id')->constrained('careers');
             $table->string('name');
             $table->string('code');
             $table->string('description');
