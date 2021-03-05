@@ -19,7 +19,7 @@ class CreateEnrolmentsTable extends Migration
             $table->foreignId('term_id')->constrained('terms');
             $table->foreignId('career_id')->constrained('careers');
             $table->string('dni');
-            $table->enum('state');
+            $table->string('state');
             $table->timestamps();
         });
     }
