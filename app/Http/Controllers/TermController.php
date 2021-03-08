@@ -58,7 +58,7 @@ class TermController extends Controller
     public function show($id)
     {
         $term = Term::findOrFail($id);
-        return view('term.show', ['term' => $term]);
+        return view('terms.show', ['term' => $term]);
     }
 
     /**
