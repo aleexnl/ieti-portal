@@ -1,3 +1,142 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import url("https://fonts.googleapis.com/css2?family=Catamaran&family=Karla&display=swap");
+
+html,
+body {
+    height: 100%;
+    font-family: "Karla";
+    font-size: 18px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #555559;
+    font-family: "Catamaran";
+}
+h1 {
+    letter-spacing: -1.5px;
+    font-size: 102px;
+}
+h2 {
+    letter-spacing: -0.5px;
+    font-size: 64px;
+}
+h3 {
+    letter-spacing: 0px;
+    font-size: 51px;
+}
+
+h4 {
+    letter-spacing: 0.25px;
+    font-size: 36px;
+}
+
+h5 {
+    letter-spacing: 0px;
+    font-size: 25px;
+}
+
+h5 {
+    letter-spacing: 0.15px;
+    font-size: 21px;
+}
+
+caption {
+    font-family: "Karla";
+    letter-spacing: 0.4px;
+    font-size: 13px;
+}
+a {
+    color: #555559;
+}
+a:hover {
+    transition: 0.3s;
+    text-decoration: underline;
+}
+
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.button {
+    color: #555559;
+    background: #f7f7fa;
+    font-family: "Karla";
+    letter-spacing: 1.25px;
+    font-size: 15px;
+    /*box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);*/
+    padding: 0.5rem 2rem;
+    border-radius: 10px;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+.button:hover {
+    transition: 0.3s;
+    background: #d8d8dc;
+}
+
+[type="text"]:focus,
+[type="email"]:focus,
+[type="url"]:focus,
+[type="password"]:focus,
+[type="number"]:focus,
+[type="date"]:focus,
+[type="datetime-local"]:focus,
+[type="month"]:focus,
+[type="search"]:focus,
+[type="tel"]:focus,
+[type="time"]:focus,
+[type="week"]:focus,
+[multiple]:focus,
+textarea:focus,
+select:focus {
+    box-shadow: 0px 0px 1px 2px #555559 !important;
+    border-color: #555559 !important;
+}
+
+input[type="submit"] {
+    cursor: pointer;
+    background: #555559;
+    color: #f7f7fa;
+}
+
+input[type="submit"]:hover {
+    background: #5555597e;
+}
+table {
+    border-spacing: 0 0.5rem;
+    border-collapse: separate;
+}
+thead > tr > th:nth-child(1) {
+    border-radius: 10px 0px 0px 10px;
+}
+thead > tr > th:last-child {
+    border-radius: 0px 10px 10px 0px;
+}
+
+th {
+    padding: 0.5rem 2rem;
+    background: #555559;
+    color: #f7f7fa;
+}
+
+tbody > tr > td:nth-child(1) {
+    border-radius: 10px 0px 0px 10px;
+}
+tbody > tr > td:last-child {
+    border-radius: 0px 10px 10px 0px;
+}
+
+td {
+    padding: 0.5rem 2rem;
+    background: #f7f7fa;
+    color: #555559;
+}
