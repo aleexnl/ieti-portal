@@ -31562,6 +31562,8 @@ thead > tr > th:last-child {
 }
 
 th {
+  text-align: center;
+  font-weight: 700;
   padding: 0.5rem 2rem;
   background: #555559;
   color: #f7f7fa;
@@ -31576,6 +31578,7 @@ tbody > tr > td:last-child {
 }
 
 td {
+  text-align: center;
   padding: 0.5rem 2rem;
   background: #f7f7fa;
   color: #555559;

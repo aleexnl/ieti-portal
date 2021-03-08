@@ -3,18 +3,14 @@
 
 <head>
     <!-- Metas -->
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Fonts -->
-
     <link href="https://fonts.googleapis.com/css2?family=Nunito:w<link rel=" preconnect"
         href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100&family=Karla:wght@200&display=swap"
         rel="stylesheet">
-
-    <!-- Styles -->
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="{{ url('images') }}/apple-icon-57x57.png">
@@ -35,6 +31,7 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
+    <!-- Styles -->
     <style>
         #landingHeader {
             padding: 60px;
