@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TermController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,5 +25,8 @@ Route::get('/sample-page', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
+Route::resource('terms', TermController::class)->middleware(['auth']);
 
 require __DIR__ . '/auth.php';

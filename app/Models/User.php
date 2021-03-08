@@ -10,7 +10,13 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-
+    /**
+     * Get the logs associated with the user.
+     */
+    public function user()
+    {
+        return $this->hasMany(Log::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

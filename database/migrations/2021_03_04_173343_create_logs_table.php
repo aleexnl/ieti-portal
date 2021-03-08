@@ -17,6 +17,7 @@ class CreateLogsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id')->constrained('users');
+            $table->string('mail');
             $table->integer('level');
             $table->string('message');
         });
