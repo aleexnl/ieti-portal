@@ -13,7 +13,7 @@ class Uploads extends Migration
      */
     public function up()
     {
-        Schema::create('req_enrol', function (Blueprint $table) {
+        Schema::create('uploads', function (Blueprint $table) {
             $table->id();
             $table->binary('date');
             $table->foreignId('req_enrol_id')->constrained('req_enrol');
@@ -27,6 +27,6 @@ class Uploads extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropDatabaseIfExists('uploads');
     }
 }
