@@ -19,7 +19,7 @@ class CreateTermsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->date('start_date');
-            $table->text('end_date');
+            $table->date('end_date');
             $table->boolean('active');
         });
     }
