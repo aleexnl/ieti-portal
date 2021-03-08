@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\TermController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +17,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if (Auth::check()) {
+        $user = Auth::user();
+        if ($user->isAdmin()) {
+            return "Eres un usuario administrador";
+        } else {
+            return "Eres un usuario no administrador";
+        }
+    } else {
+        return view('welcome');
+    }
 });
 
 Route::get('/sample-page', function () {
