@@ -31520,10 +31520,24 @@ input[type="reset"]:hover,
   color: #f7f7fa;
 }
 
-input:focus {
+[type="text"],
+[type="email"],
+[type="url"],
+[type="password"],
+[type="number"],
+[type="date"],
+[type="datetime-local"],
+[type="month"],
+[type="search"],
+[type="tel"],
+[type="time"],
+[type="week"],
+[multiple],
+textarea,
+select:focus {
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
-        var(--tw-shadow, 0 0 #0000);
-  border-color: #555559;
+        var(--tw-shadow, 0 0 #0000) !important;
+  border-color: #555559 !important;
 }
 
 input[type="submit"] {
