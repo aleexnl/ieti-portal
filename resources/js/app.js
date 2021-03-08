@@ -1,3 +1,7 @@
-require('./bootstrap');
+require("./bootstrap");
+require("alpinejs");
 
-require('alpinejs');
+$(function () {
+    console.log("Hola");
+    $(".datepicker").datepicker();
+});
