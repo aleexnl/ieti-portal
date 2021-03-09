@@ -40,7 +40,7 @@ Route::get('dashboard', function () {
 })->middleware(['auth', 'isAdmin'])->name('dashboard');
 
 
-Route::resource('terms', TermController::class)->middleware(['auth']);
+Route::resource('cursos', TermController::class)->middleware(['auth']);
 
 Route::name('admin')
     ->prefix('admin')
