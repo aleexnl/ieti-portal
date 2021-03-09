@@ -58,11 +58,14 @@ a:hover {
     text-decoration: underline;
 }
 
+.secondary {
+    border: 1px solid #555559;
+}
+
 button,
 input[type="button"],
 input[type="submit"],
-input[type="reset"],
-.button {
+input[type="reset"] {
     color: #555559;
     background: #f7f7fa;
     font-family: "Karla";
@@ -101,7 +104,8 @@ select:focus {
     border-color: #555559 !important;
 }
 
-input[type="submit"] {
+input[type="submit"],
+.primary {
     cursor: pointer;
     background: #555559;
     color: #f7f7fa;
