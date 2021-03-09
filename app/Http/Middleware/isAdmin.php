@@ -25,7 +25,7 @@ class isAdmin
         if ($this->auth->user()->role == "admin") {
             return $next($request);
         } else {
-            return redirect("/");
+            return redirect()->to('user');
         }
     }
 }
