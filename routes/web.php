@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TermController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,6 +43,9 @@ Route::get('dashboard', function () {
 
 Route::resource('cursos', TermController::class)->middleware(['auth'])->names([
     'index' => 'cursos'
+]);
+Route::resource('alumnes', UserController::class)->middleware(['auth'])->names([
+    'index' => 'alumnes'
 ]);
 /*
 Route::name('admin')
