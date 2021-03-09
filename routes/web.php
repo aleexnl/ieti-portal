@@ -40,4 +40,13 @@ Route::get('/dashboard', function () {
 
 Route::resource('terms', TermController::class)->middleware(['auth']);
 
+Route::name('admin')
+    ->prefix('admin')
+    ->middleware(['auth', 'can:accessdmin'])
+    ->group(function () {
+        Route::get('/admin/dashboard', 'Adminpanel\Dashboard@index');
+
+        Route::resource('posts', 'PostController');
+        Route::resource('users', 'UserController');
+    });
 require __DIR__ . '/auth.php';
