@@ -40,8 +40,10 @@ Route::get('dashboard', function () {
 })->middleware(['auth', 'isAdmin'])->name('dashboard');
 
 
-Route::resource('cursos', TermController::class)->middleware(['auth']);
-
+Route::resource('cursos', TermController::class)->middleware(['auth'])->names([
+    'index' => 'cursos'
+]);
+/*
 Route::name('admin')
     ->prefix('admin')
     ->middleware(['auth', 'can:accessdmin'])
@@ -51,4 +53,5 @@ Route::name('admin')
         Route::resource('posts', 'PostController');
         Route::resource('users', 'UserController');
     });
+    */
 require __DIR__ . '/auth.php';
