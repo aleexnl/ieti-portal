@@ -19,6 +19,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 $(function () {
+  console.log("App loaded!");
   var terms = $(".terms");
 
   var _iterator = _createForOfIteratorHelper(terms),
@@ -27,8 +28,15 @@ $(function () {
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
       var term = _step.value;
-      $(term).find(".accordion").on("click", function () {
-        $(this).find(".controls").toggleClass("hidden");
+      $(term).find(".toggler").on("click", function () {
+        $(this).toggleClass("rotate-180");
+        $(this).closest("tr").find(".controls").toggleClass("hidden");
+      });
+      $(term).find(".delete-button").on("click", function () {
+        console.log("Eliminar");
+      });
+      $(term).find(".edit-button").on("click", function () {
+        console.log("Editar");
       });
     }
   } catch (err) {
