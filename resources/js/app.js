@@ -1,7 +1,12 @@
-require("./bootstrap");
-require("alpinejs");
+import "./bootstrap";
 
 $(function () {
-    console.log("Hola");
-    $(".datepicker").datepicker();
+    let terms = $(".terms");
+    for (const term of terms) {
+        $(term)
+            .find(".accordion")
+            .on("click", function () {
+                $(this).find(".controls").toggleClass("hidden");
+            });
+    }
 });
