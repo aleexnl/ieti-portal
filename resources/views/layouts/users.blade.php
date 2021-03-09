@@ -15,32 +15,27 @@
 
 </head>
 
-<body class="antialiased">
-    <div class="md:flex md:min-h-screen w-full ">
-        <div class="flex flex-col w-full md:w-64 text-gray-500 text-lg bg-white flex-shrink-0 bg-blue-900">
-            <div class="w-full text-center flex justify-center mt-11 mb-8">
-                <x-application-logo class="h-32 w-32" />
-            </div>
-            <div class="bg-blue-700	 ">
-                <div class="text-opacity-100" style="color: #25AAE2">
-                    <p class="ml-10 my-4 " href="#">Panel de control </a>
-                </div>
-            </div>
-            <nav class="flex-grow md:block pb-4 md:pb-0 md:overflow-y-auto">
-                <div class="flex flex-col w-full">
-                    <a class="ml-10 my-4 " href="#">Cursos </a>
-
-                    <a class="ml-10 my-4" href="#">Alumnes</a>
-                </div>
-            </nav>
+<body class="antialiased bg-gray-50">
+    <nav class="h-full w-56 bg-gray-200 fixed top-0 left-0 z-50 overflow-x-hidden">
+        <div class="m-5 flex justify-center">
+            <x-application-logo class="w-28 fill-current text-gray-900" />
         </div>
-        <main class="w-full container mx-auto">
-            <h2 class="text-gray-700 ml-4 my-6 text-4xl">{{ $header }}</h2>
-            <div class="w-full">
-                {{ $slot }}
-            </div>
-        </main>
-    </div>
+        <div class="flex justify-center">
+            <span class="bg-red-200 px-2 rounded-md text-red-700">Administració</span>
+        </div>
+        <div class="flex flex-col">
+            <a class="py-4 pl-3" href="dashboard">Panel de control</a>
+            <a class="py-4 pl-3 bg-red-200 text-red-700" href="cursos">Cursos </a>
+            <a class="py-4 pl-3" href="alumnes">Alumnes</a>
+        </div>
+
+    </nav>
+    <main class="ml-56">
+        <h2 class="text-gray-700 ml-4 my-6 text-4xl">{{ $header }}</h2>
+        <div class="container mx-auto">
+            {{ $slot }}
+        </div>
+    </main>
 </body>
 
 </html>
