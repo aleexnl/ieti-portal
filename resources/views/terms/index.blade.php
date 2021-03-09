@@ -6,26 +6,35 @@
     </x-slot>
 
     <div class="container mx-auto">
-        <table class="w-full">
+        <table class="w-full terms">
             <thead>
-                <th>Nom</th>
-                <th>Descripció</th>
-                <th>Data Inici</th>
-                <th>Data Fí</th>
+                <tr>
+                    <th>Nom</th>
+                    <th>Descripció</th>
+                    <th>Data Inici</th>
+                    <th>Data Fí</th>
+                </tr>
             </thead>
             <tbody>
                 @if ($terms)
                 @foreach ($terms as $term)
-                @if ($term->active)
-                <tr>
-                    <td>{{$term->name}}</td>
+                <tr class="accordion">
+                    <td>{{$term->name}} </td>
                     <td>
-                        <p class="overflow-hidden overflow-ellipsis whitespace-nowrap w-36">{{$term->description}}</p>
+                        <p class="overflow-hidden overflow-ellipsis whitespace-nowrap w-36">
+                            {{$term->description}}</p>
                     </td>
                     <td>{{$term->start_date}}</td>
-                    <td>{{$term->end_date}}</td>
+                    <td>
+                        <div class="flex flex-col">
+                            {{$term->end_date}}
+                            <div class="flex flex-col controls hidden">
+                                <button class="primary my-1">Editar</button>
+                                <button class="secondary my-1">Eliminar</button>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
-                @endif
                 @endforeach
                 @endif
             </tbody>
