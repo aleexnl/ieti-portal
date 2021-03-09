@@ -33,9 +33,11 @@ Route::get('/sample-page', function () {
     return view('sample');
 });
 
-Route::get('/dashboard', function () {
+
+
+Route::get('dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth', 'isAdmin'])->name('dashboard');
 
 
 Route::resource('terms', TermController::class)->middleware(['auth']);
