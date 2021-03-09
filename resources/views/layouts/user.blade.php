@@ -20,13 +20,13 @@
         <div class="m-5 flex justify-center">
             <x-application-logo class="w-28 fill-current text-gray-900" />
         </div>
-        <div class="flex justify-center">
-            <span class="bg-red-200 px-2 rounded-md text-red-700">Administració</span>
-        </div>
-        <div class="flex flex-col">
-            <a class="py-4 pl-3" href="dashboard">Panel de control</a>
-            <a class="py-4 pl-3 bg-red-200 text-red-700" href="cursos">Cursos </a>
-            <a class="py-4 pl-3" href="alumnes">Alumnes</a>
+        <div class="flex flex-col mt-5">
+            <x-user-nav-link href="dashboard" :active="request()->routeIs('dashboard')">Panel de control
+            </x-user-nav-link>
+            <!--
+            <x-user-nav-link href="cursos" :active="request()->routeIs('cursos')">Cursos </x-user-nav-link>
+            <x-user-nav-link href="alumnes" :active="request()->routeIs('alumnes')">Alumnes</x-user-nav-link>
+            -->
         </div>
 
     </nav>
