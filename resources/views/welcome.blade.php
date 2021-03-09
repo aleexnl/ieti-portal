@@ -6,11 +6,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:w<link rel=" preconnect"
-        href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100&family=Karla:wght@200&display=swap"
-        rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="{{ url('images') }}/apple-icon-57x57.png">
@@ -31,45 +29,35 @@
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Styles -->
-    <style>
-        #landingHeader {
-            padding: 60px;
-        }
-
-        #button {
-            font-family: 'Catamaran', sans-serif;
-            border: ligh-grey;
-            color: black;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-        }
-    </style>
-
-    <title>Landing page</title>
+    <title>Institut Esteve Terradas i Illa</title>
 
 </head>
-<header id="landingHeader">
-</header>
 
-<body id="landingBody">
-    <center>
-        <div>
-            <h2>Bienvendido al portal de matriculacion web de IETI</h2>
+<body>
+    <main class="flex h-full w-full justify-center items-center">
+        <div class="bg-gray-200 h-auto p-10 rounded-3xl flex flex-col items-center mx-auto">
+            <h2 class="text-center">Institut Esteve Terradas i Illa</h2>
+            <p class="w-2/4 text-center">Benvinguts a l'aplicació de matriculació de l'Institut Esteve Terradas i Illa,
+                si
+                us plau,
+                inicia
+                sessió o registrar-per accedir.
+            </p>
+            <div class="mt-6">
+                <a href="login">
+                    <button class="primary">
+                        Iniciar Sessió
+                    </button>
+                </a>
+                <!--
+                <a href="register">
+                    <button class="secondary disabled" disabled>Registrarme</button>
+                </a>
+                -->
+            </div>
         </div>
-        <div>
-            <button id="button">Iniciar sesión</button>
-            <button id="button">Registrarse</button>
-        </div>
-    </center>
+    </main>
 </body>
-<footer id="landingFooter">
-</footer>
-</body>
+
 
 </html>
