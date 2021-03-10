@@ -35,6 +35,7 @@ Route::get('dashboard', function () {
 })->middleware(['auth'])->name('dashboard');;
 
 
+
 Route::get("forbidden", function () {
     return view('403error');
 });

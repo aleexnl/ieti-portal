@@ -38,13 +38,13 @@
                     </div>
                 </td>
                 <td>
-                    <p class="overflow-hidden overflow-ellipsis whitespace-nowrap w-36">
+                    <p class="overflow-hidden overflow-ellipsis whitespace-nowrap w-36" id="description" value="{{$term->id}}">
                         {{$term->description}}
                     </p>
                 </td>
                 <td class="bg-gray-300">{{$term->start_date}}</td>
                 <td class="bg-gray-300">
-                    <div class="flex flex-col value=" {{$term->id}}">
+                    <div class="flex flex-col" value="{{$term->id}}">
                         <p>
                             {{$term->end_date}}
                         </p>

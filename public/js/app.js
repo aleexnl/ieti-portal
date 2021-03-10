@@ -60,7 +60,19 @@ $(function () {
         //$(term).find(".delete-button").replaceWith("<button class='secondary my-1 w-full cancel-button' value='"+value+"'>Cancelar</button>")
 
         $(".confirm-button").on("click", function () {
-          console.log("Borrando");
+          $.ajax({
+            headers: {
+              "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            },
+            data: {
+              name: $(".nameInput").val(),
+              description: $(".descInput").val()
+            },
+            url: "/cursos/".concat(value),
+            method: "PUT"
+          }).done(function () {
+            cancelEdit(name, description, value, term);
+          });
         });
         $(".cancel-button").on("click", function () {
           cancelEdit(name, description, value, term);
