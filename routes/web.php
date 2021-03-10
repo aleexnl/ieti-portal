@@ -30,7 +30,7 @@ Route::get('dashboard', function () {
     if (Auth::user()->isAdmin()) {
         return view('adminDashboard');
     } else {
-        return "Eres un usuario no administrador";
+        return view('userDashboard');
     }
 })->middleware(['auth'])->name('dashboard');;
 
