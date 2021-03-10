@@ -2,6 +2,29 @@
     <x-slot name="header">
         Cursos
     </x-slot>
+    <div id="create-course-form" class="bg-gray-200 p-6 my-3 rounded-md hidden">
+        <div class="flex flex-col mb-2">
+            <label for="course">Nom del Curs</label>
+            <input type="text" name="course" id="course_name">
+        </div>
+        <div class="flex flex-col mb-2">
+            <label for="description">Descripció</label>
+            <textarea type="text" name="description" id="course_description"></textarea>
+        </div>
+        <div class="flex flex-col mb-2">
+            <label for="description">Data Inici</label>
+            <input type="date" name="description" id="course_start" />
+        </div>
+        <div class="flex flex-col mb-2">
+            <label for="description">Data Fi</label>
+            <input type="date" name="description" id="course_end" />
+        </div>
+        <div class="flex mt-2">
+            <button class="primary mr-2" id="add-course">Crea</button>
+            <button class="secondary mr-2" id="cancel-course-creation">Cancela</button>
+        </div>
+
+    </div>
     <div class="relative hidden" id="confirm-delete">
         <div
             class="p-6 bg-red-400 rounded-md w-3/4 md:w-2/5 overflow-x-hidden flex flex-col overflow-y-hidden z-50 fixed top-0 left-0 bottom-0 right-0 mx-auto my-10 h-64 ">
@@ -15,6 +38,9 @@
                 Eliminar
             </button>
         </div>
+    </div>
+    <div class="flex">
+        <button id="add-new-term" class="primary"> Crear un curs</button>
     </div>
     <table class="w-full terms">
         <thead>
