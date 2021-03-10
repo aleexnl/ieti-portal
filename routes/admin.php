@@ -8,7 +8,7 @@ use App\Http\Controllers\UserController;
 
 Route::get('dashboard', function () {
     return view('adminDashboard');
-});
+})->name('dashboard');
 Route::resource('cursos', TermController::class)->middleware(['auth', 'isAdmin'])->names([
     'index' => 'cursos'
 ]);
