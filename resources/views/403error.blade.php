@@ -10,16 +10,18 @@
 </head>
 
 <body class="h-full flex justify-center items-center">
-    <div class="text-blue-600 object-center text-center flex flex-col">
+    <div class=" object-center text-center flex flex-col">
         <h1>403</h1>
-        <h2>NOT THIS TIME, ACCES FORBIDDEN</h2>
+        <h4>¡Ups!</h4>
+        <p>Sembla que no tens permís per mirar aquí...</p>
+        <img class="w-32 self-center"
+            src="https://julieandnoe.life/wp-content/uploads/2020/05/eb17d0925c49ef13af6e84cdfeaad079.gif"
+            alt="Funny image">
         <a href="/">
             <button class="primary">
-                Volver al inicio
+                Torna al inici
             </button>
         </a>
-        <img src="https://julieandnoe.life/wp-content/uploads/2020/05/eb17d0925c49ef13af6e84cdfeaad079.gif" alt="Funny image">
-
     </div>
 </body>
 

@@ -44,9 +44,9 @@ return [
         // Log to MySQL
         'mysql' => [
             'driver' => 'custom',
-            'handler' => App\Logging\MySQLLoggingHandler::class,
-            'via' => App\Logging\MySQLCustomLogger::class,
-            'level' => 'error',
+            'handler' => App\Logging\MysqlLoghandler::class,
+            'via' => App\Logging\MysqlLogger::class,
+            'level' => 'warning',
         ],
         //
 
