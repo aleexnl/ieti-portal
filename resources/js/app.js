@@ -1,7 +1,6 @@
 import "./bootstrap";
 
 $(function () {
-    console.log("App loaded!");
     let terms = $(".terms");
     for (const term of terms) {
         $(term)
@@ -13,7 +12,13 @@ $(function () {
         $(term)
             .find(".delete-button")
             .on("click", function (event) {
-                deleteTerm(event.target);
+                let id = event.target.attributes.value.value;
+                let name = $(event.target)
+                    .closest("tr")
+                    .find("td > div > span")
+                    .text();
+                let parent = $(event.target).closest("tr");
+                deleteTerm(id, name, parent);
             });
         $(term)
             .find(".edit-button")
@@ -21,21 +26,26 @@ $(function () {
                 console.log("Editar");
             });
     }
+    $("#confirm-delete button.delete-modal-close").on("click", function () {
+        $("#confirm-delete").toggleClass("hidden");
+        $("#confirm-delete button.delete-button").off("click");
+        $("#confirm-delete input").off("input");
+    });
 });
 
-function deleteTerm(target) {
-    const id = target.attributes.value.value;
-    const termName = $(target).closest("tr").find("td > div > span").text();
-    resetDeleteModal(termName);
+function deleteTerm(id, name, parent) {
+    // Reset Modal
+    $("#confirm-delete button.delete-button").attr("disabled", true);
+    $("#confirm-delete input").val("");
+    $("#confirm-delete p  b").text(name);
+    $("#confirm-delete").toggleClass("hidden"); // Activate modal
+    // Compare when changing input
     $("#confirm-delete input").on("input", function () {
-        $(this).val() == termName
-            ? $("#confirm-delete button").attr("disabled", false)
-            : $("#confirm-delete button").attr("disabled", true);
+        $(this).val() == name
+            ? $("#confirm-delete button.delete-button").attr("disabled", false)
+            : $("#confirm-delete button.delete-button").attr("disabled", true);
     });
-    $("#confirm-delete .delete-modal-close").one("click", function () {
-        $("#confirm-delete").toggleClass("hidden");
-    });
-    $("#confirm-delete button").on("click", function () {
+    $("#confirm-delete button.delete-button").one("click", function () {
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -43,18 +53,8 @@ function deleteTerm(target) {
             url: `/cursos/${id}`,
             method: "DELETE",
         }).done(() => {
-            $(target).closest("tr").fadeOut();
+            $(parent).fadeOut();
             $("#confirm-delete").toggleClass("hidden");
         });
     });
-}
-/**
- * Resets modal status to its original state
- * @param {*} termName String
- */
-function resetDeleteModal(termName) {
-    $("#confirm-delete button").attr("disabled", true);
-    $("#confirm-delete input").val("");
-    $("#confirm-delete p  b").text(termName);
-    $("#confirm-delete").toggleClass("hidden");
 }
