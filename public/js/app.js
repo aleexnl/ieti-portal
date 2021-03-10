@@ -18,6 +18,16 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 
+
+function cancelEdit(textName, textDesc, value, term) {
+  $(".nameInput").replaceWith("<p id='name' value='" + value + "'>" + textName + "</p>");
+  $(".descInput").replaceWith("<p id='description' class='overflow-hidden overflow-ellipsis whitespace-nowrap w-36' value='" + value + "'>" + textDesc + "</p>");
+  $(".confirm-button").css('display', 'none');
+  $(".cancel-button").css('display', 'none');
+  $(term).find(".delete-button").css('display', 'block ');
+  $(term).find(".edit-button").css('display', 'block');
+}
+
 $(function () {
   var terms = $(".terms");
 
@@ -25,7 +35,7 @@ $(function () {
       _step;
 
   try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+    var _loop = function _loop() {
       var term = _step.value;
       $(term).find(".toggler").on("click", function () {
         $(this).toggleClass("rotate-180");
@@ -38,8 +48,28 @@ $(function () {
         deleteTerm(id, name, parent);
       });
       $(term).find(".edit-button").on("click", function () {
-        console.log("Editar");
+        $($(this)).css('display', 'none');
+        $(term).find(".delete-button").css('display', 'none');
+        var value = $(this).attr("value");
+        var name = $("p[id='name'][value='" + value + "']").text();
+        var description = $("p[id='description'][value='" + value + "']").text();
+        $("div[value='" + value + "']").find("p").after("<button class='secondary my-1 w-full cancel-button' value='" + value + "'>Cancelar</button>");
+        $("div[value='" + value + "']").find("p").after("<button class='primary my-1 w-full confirm-button' value='" + value + "'>Confirmar</button>");
+        $("p[id='name'][value='" + value + "']").replaceWith("<input class='nameInput' value='" + name + "'></input>");
+        $("p[id='description'][value='" + value + "']").replaceWith("<textarea class='descInput'>" + description + "</textarea>"); //$($(this)).replaceWith("<button class='primary my-1 w-full confirm-button' value='"+value+"'>Confirmar</button>")
+        //$(term).find(".delete-button").replaceWith("<button class='secondary my-1 w-full cancel-button' value='"+value+"'>Cancelar</button>")
+
+        $(".confirm-button").on("click", function () {
+          console.log("Borrando");
+        });
+        $(".cancel-button").on("click", function () {
+          cancelEdit(name, description, value, term);
+        });
       });
+    };
+
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      _loop();
     }
   } catch (err) {
     _iterator.e(err);

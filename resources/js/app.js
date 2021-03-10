@@ -1,5 +1,13 @@
 import "./bootstrap";
-
+function cancelEdit (textName,textDesc, value,term){
+    $(".nameInput").replaceWith("<p id='name' value='"+value+"'>"+textName+"</p>");
+    $(".descInput").replaceWith("<p id='description' class='overflow-hidden overflow-ellipsis whitespace-nowrap w-36' value='"+value+"'>"+textDesc+"</p>");
+    $(".confirm-button").css('display', 'none');
+    $(".cancel-button").css('display', 'none');
+    $(term).find(".delete-button").css('display','block ')
+    $(term).find(".edit-button").css('display','block')
+    
+}
 $(function () {
     let terms = $(".terms");
     for (const term of terms) {
@@ -23,7 +31,24 @@ $(function () {
         $(term)
             .find(".edit-button")
             .on("click", function () {
-                console.log("Editar");
+                $($(this)).css('display','none');
+                $(term).find(".delete-button").css('display','none')
+                let value=$(this).attr("value");
+                let name = $("p[id='name'][value='"+value+"']").text();
+                let description = $("p[id='description'][value='"+value+"']").text();
+                $("div[value='"+value+"']").find("p").after("<button class='secondary my-1 w-full cancel-button' value='"+value+"'>Cancelar</button>")
+                $("div[value='"+value+"']").find("p").after("<button class='primary my-1 w-full confirm-button' value='"+value+"'>Confirmar</button>")
+                $("p[id='name'][value='"+value+"']").replaceWith("<input class='nameInput' value='"+ name+"'></input>")
+                $("p[id='description'][value='"+value+"']").replaceWith("<textarea class='descInput'>"+description+"</textarea>")
+                //$($(this)).replaceWith("<button class='primary my-1 w-full confirm-button' value='"+value+"'>Confirmar</button>")
+                //$(term).find(".delete-button").replaceWith("<button class='secondary my-1 w-full cancel-button' value='"+value+"'>Cancelar</button>")
+
+                $(".confirm-button").on("click",function(){
+                    console.log("Borrando")
+                })
+                $(".cancel-button").on("click",function(){
+                    cancelEdit(name,description,value,term)
+                })
             });
     }
     $("#confirm-delete button.delete-modal-close").on("click", function () {

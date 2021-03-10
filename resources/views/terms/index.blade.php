@@ -26,8 +26,7 @@
 
     </div>
     <div class="relative hidden" id="confirm-delete">
-        <div
-            class="p-6 bg-red-400 rounded-md w-3/4 md:w-2/5 overflow-x-hidden flex flex-col overflow-y-hidden z-50 fixed top-0 left-0 bottom-0 right-0 mx-auto my-10 h-64 ">
+        <div class="p-6 bg-red-400 rounded-md w-3/4 md:w-2/5 overflow-x-hidden flex flex-col overflow-y-hidden z-50 fixed top-0 left-0 bottom-0 right-0 mx-auto my-10 h-64 ">
             <button class="delete-modal-close cursor-pointer ml-auto w-auto text-red-900 hover:text-red-600">
                 X
             </button>
@@ -59,17 +58,22 @@
                 <td class="bg-gray-300 w-1/4">
                     <div class="flex">
                         <x-chevron-down class="w-6 mr-2 transform inline toggler" />
-                        <span>{{$term->name}}</span>
+                        <p id="name" value="{{$term->id}}">
+                            {{$term->name}}
+                        </p>
                     </div>
                 </td>
                 <td>
                     <p class="overflow-hidden overflow-ellipsis whitespace-nowrap w-36">
-                        {{$term->description}}</p>
+                        {{$term->description}}
+                    </p>
                 </td>
                 <td class="bg-gray-300">{{$term->start_date}}</td>
                 <td class="bg-gray-300">
-                    <div class="flex flex-col">
-                        {{$term->end_date}}
+                    <div class="flex flex-col value=" {{$term->id}}">
+                        <p>
+                            {{$term->end_date}}
+                        </p>
                         <div class="flex flex-col controls hidden">
                             <button class="primary my-1 w-full edit-button" value="{{$term->id}}">Editar</button>
                             <button class="secondary my-1 w-full delete-button" value="{{$term->id}}">Eliminar</button>
