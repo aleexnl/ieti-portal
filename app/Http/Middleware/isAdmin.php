@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Contracts\Auth\Guard;
 use Closure;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 
 class isAdmin
@@ -25,7 +26,7 @@ class isAdmin
         if ($this->auth->user()->role == "admin") {
             return $next($request);
         } else {
-            return redirect("forbidden");
+            return response(view('403error'), 403);
         }
     }
 }
