@@ -15,6 +15,7 @@
         <tbody>
             @if ($terms)
             @foreach ($terms as $term)
+            @if ($term->active)
             <tr class="accordion">
                 <td class="bg-gray-300 w-1/4">
                     <div class="flex">
@@ -37,6 +38,7 @@
                     </div>
                 </td>
             </tr>
+            @endif
             @endforeach
             @endif
         </tbody>
