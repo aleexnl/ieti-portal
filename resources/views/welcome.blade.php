@@ -8,7 +8,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
+    <link href="/css/app.css" rel="stylesheet">
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="{{ url('images') }}/apple-icon-57x57.png">
