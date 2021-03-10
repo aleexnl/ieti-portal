@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\TermController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +16,6 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-
     return view('welcome');
 });
 
@@ -28,28 +25,17 @@ Route::get('/sample-page', function () {
 
 Route::get('dashboard', function () {
     if (Auth::user()->isAdmin()) {
-        return view('adminDashboard');
+        return redirect('admin/dashboard');
     } else {
         return view('userDashboard');
     }
 })->middleware(['auth'])->name('dashboard');;
 
-
-
-Route::get("forbidden", function () {
-    return view('403error');
-});
-/*
-Route::get('dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'isAdmin'])->name('dashboard');
-
-    */
-Route::resource('cursos', TermController::class)->middleware(['auth', 'isAdmin'])->names([
-    'index' => 'cursos'
-]);
-Route::resource('alumnes', UserController::class)->middleware(['auth', 'isAdmin'])->names([
-    'index' => 'alumnes'
-]);
+Route::name('admin')
+    ->prefix('admin')
+    ->middleware(['auth', 'isAdmin'])
+    ->group(function () {
+        require __DIR__ . '/admin.php';
+    });
 
 require __DIR__ . '/auth.php';
