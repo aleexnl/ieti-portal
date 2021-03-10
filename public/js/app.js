@@ -94,6 +94,33 @@ $(function () {
     $("#confirm-delete button.delete-button").off("click");
     $("#confirm-delete input").off("input");
   });
+  $("#add-new-term").on("click", function () {
+    $("#create-course-form").toggleClass("hidden");
+    $(this).toggleClass("hidden");
+  });
+  $("#cancel-course-creation").on("click", function () {
+    $("#create-course-form").toggleClass("hidden");
+    $("#add-new-term").toggleClass("hidden");
+  });
+  $("#add-course").on("click", function () {
+    var data = {
+      name: $("#course_name").val(),
+      description: $("#course_description").val(),
+      start_date: $("#course_start").val(),
+      end_date: $("#course_end").val()
+    };
+    $.ajax({
+      headers: {
+        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+      },
+      url: "/cursos",
+      method: "POST",
+      dataType: "json",
+      data: data
+    });
+    /*.done(() => {
+    });*/
+  });
 });
 
 function deleteTerm(id, name, parent) {
