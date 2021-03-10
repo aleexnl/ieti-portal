@@ -37,6 +37,10 @@ Route::get('dashboard', function () {
 Route::get('pruebaAdmin', function () {
     return "Hola soy un admin";
 })->middleware(['auth', 'isAdmin']);
+
+Route::get("forbidden", function () {
+    return view('403error');
+});
 /*
 Route::get('dashboard', function () {
     return view('dashboard');
