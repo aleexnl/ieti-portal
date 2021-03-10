@@ -2,12 +2,12 @@
 
 namespace App\Logging;
 // use Illuminate\Log\Logger;
-use DB;
-use Illuminate\Support\Facades\Auth;
+
+use App\Models\Log;
 use Monolog\Logger;
 use Monolog\Handler\AbstractProcessingHandler;
 
-class MySqlLoggingHandler extends AbstractProcessingHandler
+class MysqlLoghandler extends AbstractProcessingHandler
 {
     /**
      *
@@ -21,11 +21,11 @@ class MySqlLoggingHandler extends AbstractProcessingHandler
     }
     protected function write(array $record): void
     {
-        // dd($record);   
-        $data = array(
-            'message'       => $record['message'],
-            'level'         => $record['level'],
-        );
-        DB::connection()->table($this->table)->insert($data);
+        $log = new Log;
+        $log->user_id = $record['context']['user_id'];
+        $log->mail = $record['context']['user_email'];
+        $log->level = $record['level'];
+        $log->message = $record['message'];
+        $log->save();
     }
 }

@@ -4,7 +4,7 @@ namespace App\Logging;
 
 use Monolog\Logger;
 
-class MySqlLogger
+class MysqlLogger
 {
     /**
      * Create a custom Monolog instance.
@@ -15,7 +15,7 @@ class MySqlLogger
      */
     public function __invoke(array $config)
     {
-        $logger = new Logger("MySqlLoggingHandler");
-        return $logger->pushHandler(new MySqlLoggingHandler());
+        $logger = new Logger("MysqlLogHandler");
+        return $logger->pushHandler(new MysqlLogHandler());
     }
 }
