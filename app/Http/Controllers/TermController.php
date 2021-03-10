@@ -52,8 +52,8 @@ class TermController extends Controller
             ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]
         );
 
-        $terms = Term::all();
-        return view('term.index', ['terms' => $terms]);
+        // $terms = Term::all();
+        // return view('term.index', ['terms' => $terms]);
     }
 
     /**
@@ -92,8 +92,8 @@ class TermController extends Controller
         $old_term = $term->name;
         $term->name = $request->name;
         $term->description = $request->description;
-        $term->start_date = $request->start_date;
-        $term->end_date = $request->end_date;
+        //$term->start_date = $request->start_date;
+        //$term->end_date = $request->end_date;
         $term->save();
         Log::warning(
             "Updated course " . $old_term->name . "to " . $term->name,
