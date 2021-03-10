@@ -22,8 +22,8 @@ class MysqlLoghandler extends AbstractProcessingHandler
     protected function write(array $record): void
     {
         $log = new Log;
-        $log->user_id = $record['context']['user_id'];
-        $log->mail = $record['context']['user_email'];
+        $log->user_id = $record['context']['user_id'] ?? null;
+        $log->mail = $record['context']['user_email'] ?? null;
         $log->level = $record['level'];
         $log->message = $record['message'];
         $log->save();
