@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TermController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,9 +42,14 @@ Route::get('dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'isAdmin'])->name('dashboard');
 
-*/
-Route::resource('terms', TermController::class)->middleware(['auth']);
-
+    */
+Route::resource('cursos', TermController::class)->middleware(['auth'])->names([
+    'index' => 'cursos'
+]);
+Route::resource('alumnes', UserController::class)->middleware(['auth'])->names([
+    'index' => 'alumnes'
+]);
+/*
 Route::name('admin')
     ->prefix('admin')
     ->middleware(['auth', 'can:accessdmin'])
@@ -53,4 +59,5 @@ Route::name('admin')
         Route::resource('posts', 'PostController');
         Route::resource('users', 'UserController');
     });
+    */
 require __DIR__ . '/auth.php';
