@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Term;
 
@@ -38,12 +39,18 @@ class TermController extends Controller
      */
     public function store(Request $request)
     {
+
         $term = new Term;
         $term->name = $request->name;
         $term->description = $request->description;
         $term->start_date = $request->start_date;
         $term->end_date = $request->end_date;
         $term->save();
+
+        Log::warning(
+            "Created new course: " . $term->name,
+            ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]
+        );
 
         $terms = Term::all();
         return view('term.index', ['terms' => $terms]);
@@ -82,11 +89,16 @@ class TermController extends Controller
     public function update(Request $request, $id)
     {
         $term = Term::findOrFail($id);
+        $old_term = $term->name;
         $term->name = $request->name;
         $term->description = $request->description;
         $term->start_date = $request->start_date;
         $term->end_date = $request->end_date;
         $term->save();
+        Log::warning(
+            "Updated course " . $old_term->name . "to " . $term->name,
+            ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]
+        );
     }
 
     /**
@@ -100,5 +112,9 @@ class TermController extends Controller
         $term = Term::findOrFail($id);
         $term->active = 0;
         $term->save();
+        Log::warning(
+            "Soft-deleted course " . $term->name,
+            ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]
+        );
     }
 }
