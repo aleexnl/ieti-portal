@@ -22,10 +22,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function cancelEdit(textName, textDesc, value, term) {
   $(".nameInput").replaceWith("<p id='name' value='" + value + "'>" + textName + "</p>");
   $(".descInput").replaceWith("<p id='description' class='overflow-hidden overflow-ellipsis whitespace-nowrap w-36' value='" + value + "'>" + textDesc + "</p>");
-  $(".confirm-button").css('display', 'none');
-  $(".cancel-button").css('display', 'none');
-  $(term).find(".delete-button").css('display', 'block ');
-  $(term).find(".edit-button").css('display', 'block');
+  $(".confirm-button").css("display", "none");
+  $(".cancel-button").css("display", "none");
+  $(term).find(".delete-button").css("display", "block ");
+  $(term).find(".edit-button").css("display", "block");
 }
 
 $(function () {
@@ -48,8 +48,8 @@ $(function () {
         deleteTerm(id, name, parent);
       });
       $(term).find(".edit-button").on("click", function () {
-        $($(this)).css('display', 'none');
-        $(term).find(".delete-button").css('display', 'none');
+        $($(this)).css("display", "none");
+        $(term).find(".delete-button").css("display", "none");
         var value = $(this).attr("value");
         var name = $("p[id='name'][value='" + value + "']").text();
         var description = $("p[id='description'][value='" + value + "']").text();
@@ -60,14 +60,16 @@ $(function () {
         //$(term).find(".delete-button").replaceWith("<button class='secondary my-1 w-full cancel-button' value='"+value+"'>Cancelar</button>")
 
         $(".confirm-button").on("click", function () {
+          var data = {
+            name: $(".nameInput").val(),
+            description: $(".descInput").val()
+          };
+          console.log(data);
           $.ajax({
             headers: {
               "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
             },
-            data: {
-              name: $(".nameInput").val(),
-              description: $(".descInput").val()
-            },
+            data: data,
             url: "/cursos/".concat(value),
             method: "PUT"
           }).done(function () {
