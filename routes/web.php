@@ -34,30 +34,17 @@ Route::get('dashboard', function () {
     }
 })->middleware(['auth'])->name('dashboard');;
 
-Route::get('pruebaAdmin', function () {
-    return "Hola soy un admin";
-})->middleware(['auth', 'isAdmin']);
 /*
 Route::get('dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'isAdmin'])->name('dashboard');
 
     */
-Route::resource('cursos', TermController::class)->middleware(['auth'])->names([
+Route::resource('cursos', TermController::class)->middleware(['auth', 'isAdmin'])->names([
     'index' => 'cursos'
 ]);
-Route::resource('alumnes', UserController::class)->middleware(['auth'])->names([
+Route::resource('alumnes', UserController::class)->middleware(['auth', 'isAdmin'])->names([
     'index' => 'alumnes'
 ]);
-/*
-Route::name('admin')
-    ->prefix('admin')
-    ->middleware(['auth', 'can:accessdmin'])
-    ->group(function () {
-        Route::get('/admin/dashboard', 'Adminpanel\Dashboard@index');
 
-        Route::resource('posts', 'PostController');
-        Route::resource('users', 'UserController');
-    });
-    */
 require __DIR__ . '/auth.php';
