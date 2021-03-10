@@ -32,7 +32,7 @@
     </nav>
     <main class="ml-56">
         <h2 class="text-gray-700 ml-4 my-6 text-4xl">{{ $header }}</h2>
-        <div class="container mx-auto">
+        <div class="container mx-auto px-5">
             {{ $slot }}
         </div>
     </main>
