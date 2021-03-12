@@ -62,7 +62,7 @@ class TermController extends Controller
     public function show($id)
     {
         $term = Term::findOrFail($id);
-        $careers = $term->careers();
+        $careers = $term->careers()->get();
 
         return view('terms.show', ['term' => $term, 'careers' => $careers]);
     }
