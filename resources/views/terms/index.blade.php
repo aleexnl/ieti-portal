@@ -28,7 +28,8 @@
 
     </div>
     <div class="relative hidden" id="confirm-delete">
-        <div class="p-6 bg-red-400 rounded-md w-3/4 md:w-2/5 overflow-x-hidden flex flex-col overflow-y-hidden z-50 fixed top-0 left-0 bottom-0 right-0 mx-auto my-10 h-64 ">
+        <div
+            class="p-6 bg-red-400 rounded-md w-3/4 md:w-2/5 overflow-x-hidden flex flex-col overflow-y-hidden z-50 fixed top-0 left-0 bottom-0 right-0 mx-auto my-10 h-64 ">
             <button class="delete-modal-close cursor-pointer ml-auto w-auto text-red-900 hover:text-red-600">
                 X
             </button>
@@ -56,7 +57,7 @@
             @if ($terms)
             @foreach ($terms as $term)
             @if ($term->active)
-            <tr class="accordion">
+            <tr class="accordion cursor-pointer" data-href="cursos/{{$term->id}}">
                 <td class="bg-gray-300 w-1/4">
                     <div class="flex">
                         <x-chevron-down class="w-6 mr-2 transform inline toggler" />
@@ -66,7 +67,8 @@
                     </div>
                 </td>
                 <td>
-                    <p class="overflow-hidden overflow-ellipsis whitespace-nowrap w-36" id="description" value="{{$term->id}}">
+                    <p class="overflow-hidden overflow-ellipsis whitespace-nowrap w-36" id="description"
+                        value="{{$term->id}}">
                         {{$term->description}}
                     </p>
                 </td>
