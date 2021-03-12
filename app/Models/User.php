@@ -13,7 +13,7 @@ class User extends Authenticatable
     /**
      * Get the logs associated with the user.
      */
-    public function user()
+    public function logs()
     {
         return $this->hasMany(Log::class);
     }
