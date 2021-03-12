@@ -1,5 +1,5 @@
 import "./bootstrap";
-function cancelEdit(textName, textDesc, value, term) {
+function cancelEdit(textName, textDesc, value) {
     $(".nameInput").replaceWith(
         "<p id='name' value='" + value + "'>" + textName + "</p>"
     );
@@ -12,89 +12,101 @@ function cancelEdit(textName, textDesc, value, term) {
     );
     $(".confirm-button").css("display", "none");
     $(".cancel-button").css("display", "none");
-    $(term).find(".delete-button").css("display", "block ");
-    $(term).find(".edit-button").css("display", "block");
+    $(".terms > tbody > tr > td .delete-button").css("display", "block ");
+    $(".terms > tbody > tr > td .edit-button").css("display", "block");
 }
 $(function () {
-    let terms = $(".terms");
-    for (const term of terms) {
-        $(term)
-            .find(".toggler")
-            .on("click", function () {
-                $(this).toggleClass("rotate-180");
-                $(this).closest("tr").find(".controls").toggleClass("hidden");
-            });
-        $(term)
-            .find(".edit-button")
-            .on("click", function () {
-                $($(this)).css("display", "none");
-                $(term).find(".delete-button").css("display", "none");
-                let value = $(this).attr("value");
-                let name = $("p[id='name'][value='" + value + "']").text();
-                let description = $(
-                    "p[id='description'][value='" + value + "']"
-                ).text();
-                $("div[value='" + value + "']")
-                    .find("p")
-                    .after(
-                        "<button class='secondary my-1 w-full cancel-button' value='" +
-                            value +
-                            "'>Cancelar</button>"
-                    );
-                $("div[value='" + value + "']")
-                    .find("p")
-                    .after(
-                        "<button class='primary my-1 w-full confirm-button' value='" +
-                            value +
-                            "'>Confirmar</button>"
-                    );
-                $("p[id='name'][value='" + value + "']").replaceWith(
-                    "<input class='nameInput' value='" + name + "'></input>"
-                );
-                $("p[id='description'][value='" + value + "']").replaceWith(
-                    "<textarea class='descInput'>" + description + "</textarea>"
-                );
-                //$($(this)).replaceWith("<button class='primary my-1 w-full confirm-button' value='"+value+"'>Confirmar</button>")
-                //$(term).find(".delete-button").replaceWith("<button class='secondary my-1 w-full cancel-button' value='"+value+"'>Cancelar</button>")
+    $(".terms > tbody > tr[data-href]").on("click", function () {
+        window.location = $(this).data("href");
+        return false;
+    });
+    $(".terms > tbody > tr > td .toggler").on("click", function (event) {
+        event.stopPropagation();
+        $(this).toggleClass("rotate-180");
+        $(this).closest("tr").find(".controls").toggleClass("hidden");
+    });
 
-                $(".confirm-button").on("click", function () {
-                    let data = {
-                        name: $(".nameInput").val(),
-                        description: $(".descInput").val(),
-                    };
-                    console.log(data);
-                    $.ajax({
-                        headers: {
-                            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                                "content"
-                            ),
-                        },
-                        data: data,
-                        url: `/cursos/${value}`,
-                        method: "PUT",
-                    }).done(() => {
-                        cancelEdit(name, description, value, term);
-                    });
-                });
-                $(".cancel-button").on("click", function () {
+    $(".terms > tbody > tr > td button.edit-button").on(
+        "click",
+        function (event) {
+            event.stopPropagation();
+            $(this).css("display", "none");
+            $(".terms > tbody > tr > td button.delete-button").css(
+                "display",
+                "none"
+            );
+            let value = $(this).attr("value");
+            let name = $("p[id='name'][value='" + value + "']").text();
+            let description = $(
+                "p[id='description'][value='" + value + "']"
+            ).text();
+            $("div[value='" + value + "']")
+                .find("p")
+                .after(
+                    "<button class='secondary my-1 w-full cancel-button' value='" +
+                        value +
+                        "'>Cancelar</button>"
+                );
+            $("div[value='" + value + "']")
+                .find("p")
+                .after(
+                    "<button class='primary my-1 w-full confirm-button' value='" +
+                        value +
+                        "'>Confirmar</button>"
+                );
+            $("p[id='name'][value='" + value + "']").replaceWith(
+                "<input class='nameInput' value='" + name + "'></input>"
+            );
+            $("p[id='description'][value='" + value + "']").replaceWith(
+                "<textarea class='descInput'>" + description + "</textarea>"
+            );
+            $(".confirm-button").on("click", function (event) {
+                event.stopPropagation();
+                let data = {
+                    name: $(".nameInput").val(),
+                    description: $(".descInput").val(),
+                };
+                console.log(data);
+                $.ajax({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                            "content"
+                        ),
+                    },
+                    data: data,
+                    url: `/cursos/${value}`,
+                    method: "PUT",
+                }).done(() => {
                     cancelEdit(name, description, value, term);
                 });
             });
-    }
-    $("#confirm-delete button.delete-modal-close").on("click", function () {
-        $("#confirm-delete").toggleClass("hidden");
-        $("#confirm-delete button.delete-button").off("click");
-        $("#confirm-delete input").off("input");
-    });
-    $("#add-new-term").on("click", function () {
+            $(".cancel-button").on("click", function (event) {
+                event.stopPropagation();
+                cancelEdit(name, description, value);
+            });
+        }
+    );
+    $("#confirm-delete button.delete-modal-close").on(
+        "click",
+        function (event) {
+            event.stopPropagation();
+            $("#confirm-delete").toggleClass("hidden");
+            $("#confirm-delete button.delete-button").off("click");
+            $("#confirm-delete input").off("input");
+        }
+    );
+    $("#add-new-term").on("click", function (event) {
+        event.stopPropagation();
         $("#create-course-form").toggleClass("hidden");
         $(this).toggleClass("hidden");
     });
-    $("#cancel-course-creation").on("click", function () {
+    $("#cancel-course-creation").on("click", function (event) {
+        event.stopPropagation();
         $("#create-course-form").toggleClass("hidden");
         $("#add-new-term").toggleClass("hidden");
     });
-    $("#add-course").on("click", function () {
+    $("#add-course").on("click", function (event) {
+        event.stopPropagation();
         let data = {
             name: $("#course_name").val(),
             description: $("#course_description").val(),
