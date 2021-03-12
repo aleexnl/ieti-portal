@@ -43,9 +43,15 @@
             <span class="bg-red-200 px-2 rounded-md text-red-700">Administració</span>
         </div>
         <div class="flex flex-col mt-5">
-            <x-nav-link href="dashboard" :active="request()->routeIs('admindashboard')">Panel de control</x-nav-link>
-            <x-nav-link href="cursos" :active="request()->routeIs('admincursos')">Cursos </x-nav-link>
-            <x-nav-link href="alumnes" :active="request()->routeIs('adminalumnes')">Alumnes</x-nav-link>
+            <x-nav-link href="{{route('admindashboard')}}" :active="(request()->segment(2) == 'dashboard')">
+                Panel de control
+            </x-nav-link>
+            <x-nav-link href="{{route('admincursos')}}" :active="(request()->segment(2) == 'cursos')">
+                Cursos
+            </x-nav-link>
+            <x-nav-link href="{{route('adminalumnes')}}" :active="request()->segment(2) == 'alumnes'">
+                Alumnes
+            </x-nav-link>
         </div>
 
     </nav>
