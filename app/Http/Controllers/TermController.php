@@ -51,9 +51,6 @@ class TermController extends Controller
             "Created new course: " . $term->name,
             ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]
         );
-
-        // $terms = Term::all();
-        // return view('term.index', ['terms' => $terms]);
     }
 
     /**
@@ -65,7 +62,9 @@ class TermController extends Controller
     public function show($id)
     {
         $term = Term::findOrFail($id);
-        return view('terms.show', ['term' => $term]);
+        $careers = $term->careers();
+
+        return view('terms.show', ['term' => $term, 'careers' => $careers]);
     }
 
     /**
@@ -96,7 +95,7 @@ class TermController extends Controller
         //$term->end_date = $request->end_date;
         $term->save();
         Log::warning(
-            "Updated course " . $old_term->name . "to " . $term->name,
+            "Updated course " . $old_term . "to " . $term->name,
             ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]
         );
     }
