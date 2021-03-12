@@ -7,6 +7,7 @@ use Closure;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 
+
 class isAdmin
 {
     protected $auth;
@@ -23,6 +24,7 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+        $request->session()->flash("error", "Todo guay");
         if ($this->auth->user()->role == "admin") {
             return $next($request);
         } else {
