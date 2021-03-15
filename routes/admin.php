@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Controllers
 use App\Http\Controllers\TermController;
+use App\Http\Controllers\TermCourseController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -20,9 +21,10 @@ use App\Http\Controllers\UserController;
 Route::get('dashboard', function () {
     return view('adminDashboard');
 })->name('dashboard');
-Route::resource('cursos', TermController::class)->middleware(['auth', 'isAdmin'])->names([
+Route::resource('cursos', TermController::class)->names([
     'index' => 'cursos'
 ]);
-Route::resource('alumnes', UserController::class)->middleware(['auth', 'isAdmin'])->names([
+Route::resource('alumnes', UserController::class)->names([
     'index' => 'alumnes'
 ]);
+Route::resource('cursos.cicles', TermCourseController::class);

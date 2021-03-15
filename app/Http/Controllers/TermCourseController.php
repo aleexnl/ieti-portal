@@ -3,22 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Auth;
 
 use App\Models\Term;
+use App\Models\Career;
 
-class TermController extends Controller
+class TermCourseController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($curso)
     {
-        $terms = Term::all();
-        return view("terms.index", ['terms' => $terms]);
+        $term = Term::findOrFail($curso);
+        $careers = $term->careers()->get();
+
+        return view('careers.index', ['term' => $term, 'careers' => $careers]);
     }
 
     /**
@@ -28,7 +29,7 @@ class TermController extends Controller
      */
     public function create()
     {
-        return view("terms.form");
+        //
     }
 
     /**
@@ -39,18 +40,7 @@ class TermController extends Controller
      */
     public function store(Request $request)
     {
-
-        $term = new Term;
-        $term->name = $request->name;
-        $term->description = $request->description;
-        $term->start_date = $request->start_date;
-        $term->end_date = $request->end_date;
-        $term->save();
-
-        Log::warning(
-            "Created new course: " . $term->name,
-            ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]
-        );
+        //
     }
 
     /**
@@ -83,17 +73,7 @@ class TermController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $term = Term::findOrFail($id);
-        $old_term = $term->name;
-        $term->name = $request->name;
-        $term->description = $request->description;
-        //$term->start_date = $request->start_date;
-        //$term->end_date = $request->end_date;
-        $term->save();
-        Log::warning(
-            "Updated course " . $old_term . "to " . $term->name,
-            ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]
-        );
+        //
     }
 
     /**
@@ -104,12 +84,6 @@ class TermController extends Controller
      */
     public function destroy($id)
     {
-        $term = Term::findOrFail($id);
-        $term->active = 0;
-        $term->save();
-        Log::warning(
-            "Soft-deleted course " . $term->name,
-            ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]
-        );
+        //
     }
 }

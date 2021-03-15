@@ -43,7 +43,7 @@
             @if ($terms)
             @foreach ($terms as $term)
             @if ($term->active)
-            <tr class="accordion cursor-pointer" data-href="cursos/{{$term->id}}">
+            <tr class="accordion cursor-pointer" data-href="cursos/{{$term->id}}/cicles">
                 <td class="bg-gray-300 w-1/4">
                     <div class="flex">
                         <x-chevron-down class="w-6 mr-2 transform inline toggler" />
