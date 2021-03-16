@@ -97,9 +97,18 @@ $(function () {
     });
     /*.done(() => {
     });*/
-  });
+  }); // Delete button redirect
+
   $("#delete-button").on("click", function (event) {
     event.stopPropagation();
+  }); // Delete input checker
+
+  $("#delete-checker").on("input", function (event) {
+    if ($(this).attr("placeholder") == $(this).val()) {
+      $("#delete-form input[type='submit']").attr("disabled", false);
+    } else {
+      $("#delete-form input[type='submit']").attr("disabled", true);
+    }
   }); // Soft delete form
 
   $("#delete-form").on("submit", function (event) {

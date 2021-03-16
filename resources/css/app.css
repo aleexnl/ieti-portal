@@ -61,7 +61,7 @@ a:hover {
 .secondary {
     border: 1px solid #555559;
 }
-button:disabled {
+button:disabled, input[type="submit"]:disabled {
     opacity: 0.2;
     cursor: not-allowed;
 }
