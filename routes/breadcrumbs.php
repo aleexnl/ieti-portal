@@ -12,6 +12,7 @@ Breadcrumbs::for('terms', static function ($trail) {
     $trail->push('Cursos', '/admin/dashboard/terms');
 });
 
+
 Breadcrumbs::for('students', static function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Alumnes', '/admin/dashboard/students');
