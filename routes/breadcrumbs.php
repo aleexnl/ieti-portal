@@ -1,6 +1,7 @@
 <?php
 
 // Dashboard
+
 Breadcrumbs::for('dashboard', static function ($trail) {
     $trail->push('Panell de control', route('dashboard'));
 });
@@ -12,6 +13,7 @@ Breadcrumbs::for('terms', static function ($trail) {
     $trail->push('Cursos', '/admin/dashboard/terms');
 });
 
+// Dashboard > students
 
 Breadcrumbs::for('students', static function ($trail) {
     $trail->parent('dashboard');
