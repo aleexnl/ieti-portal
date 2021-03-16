@@ -130,6 +130,14 @@ $(function () {
             },
             url: url,
             method: "DELETE",
+            success: function () {
+                window.location.href = document.referrer;
+            },
+            error: function () {
+                alert(
+                    "Hi ha agut un error intentant eliminar el element seleccionat."
+                );
+            },
         }).done();
     });
 });

@@ -9,7 +9,7 @@
         <a href="{{ URL::previous() }}">
             <button class="text-white bg-red-500 mr-5" autofocus>Cancela</button>
         </a>
-        <form action="/admin/cursos/{{$term->id}}/cicles/{{$career->id}}">
+        <form action="/admin/cursos/{{$term->id}}/cicles/{{$career->id}}" id="delete-form">
             <input type="submit" value="Elimina">
         </form>
     </div>

@@ -110,7 +110,13 @@ $(function () {
         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
       },
       url: url,
-      method: "DELETE"
+      method: "DELETE",
+      success: function success() {
+        window.location.href = document.referrer;
+      },
+      error: function error() {
+        alert("Hi ha agut un error intentant eliminar el element seleccionat.");
+      }
     }).done();
   });
 });
