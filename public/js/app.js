@@ -78,7 +78,7 @@ $(function () {
     $("#create-course-form").toggleClass("hidden");
     $("#add-new-term").toggleClass("hidden");
   });
-  $("#add-course").on("click", function (event) {
+  $("#add-element").on("click", function (event) {
     event.stopPropagation();
     var data = {
       name: $("#course_name").val(),
@@ -97,10 +97,21 @@ $(function () {
     });
     /*.done(() => {
     });*/
+  });
+  $("#delete-button").on("click", function (event) {
+    event.stopPropagation();
+  }); // Soft delete form
 
-    $("#delete-form").on("submit", function (event) {
-      event.preventDefault();
-    });
+  $("#delete-form").on("submit", function (event) {
+    event.preventDefault();
+    var url = $(this).attr("action");
+    $.ajax({
+      headers: {
+        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+      },
+      url: url,
+      method: "DELETE"
+    }).done();
   });
 });
 

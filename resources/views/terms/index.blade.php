@@ -5,7 +5,6 @@
     </x-slot>
 
     <div id="create-course-form" class="bg-gray-200 p-6 my-3 rounded-md hidden">
-
         <div class="flex flex-col mb-2">
             <label for="course">Nom del Curs</label>
             <input type="text" name="course" id="course_name">
@@ -43,7 +42,7 @@
         <tbody>
             @if ($terms)
             @foreach ($terms as $term)
-            @if ($term->active)
+            @if (!$term->trashed())
             <tr class="accordion cursor-pointer" data-href="cursos/{{$term->id}}/cicles">
                 <td class="bg-gray-300 w-1/4">
                     <div class="flex">
@@ -67,7 +66,9 @@
                         </p>
                         <div class="flex flex-col controls hidden">
                             <button class="primary my-1 w-full edit-button" value="{{$term->id}}">Editar</button>
-                            <button class="secondary my-1 w-full delete-button" value="{{$term->id}}">Eliminar</button>
+                            <a href="cursos/{{$term->id}}">
+                                <button class="secondary my-1 w-full delete-button" id="delete-button">Eliminar</button>
+                            </a>
                         </div>
                     </div>
                 </td>
