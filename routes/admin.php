@@ -24,8 +24,8 @@ Route::get('dashboard', function () {
 Route::resource('cursos', TermController::class)->names([
     'index' => 'cursos'
 ]);
+
 Route::resource('alumnes', UserController::class)->names([
     'index' => 'alumnes'
 ]);
 Route::resource('cursos.cicles', TermCourseController::class);
-
