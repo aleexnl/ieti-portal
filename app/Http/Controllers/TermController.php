@@ -56,11 +56,15 @@ class TermController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $curso
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($curso)
     {
+        $term = Term::findOrFail($curso);
+        if (!$term->trashed()) {
+            return view('terms.show', ['term' => $term]);
+        }
     }
 
     /**

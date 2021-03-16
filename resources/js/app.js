@@ -98,7 +98,7 @@ $(function () {
         $("#create-course-form").toggleClass("hidden");
         $("#add-new-term").toggleClass("hidden");
     });
-    $("#add-course").on("click", function (event) {
+    $("#add-element").on("click", function (event) {
         event.stopPropagation();
         let data = {
             name: $("#course_name").val(),
@@ -116,8 +116,28 @@ $(function () {
             data: data,
         }); /*.done(() => {
         });*/
-        $("#delete-form").on("submit", function (event) {
-            event.preventDefault();
-        });
+    });
+    $("#delete-button").on("click", function (event) {
+        event.stopPropagation();
+    });
+    // Soft delete form
+    $("#delete-form").on("submit", function (event) {
+        event.preventDefault();
+        let url = $(this).attr("action");
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            url: url,
+            method: "DELETE",
+            success: function () {
+                window.location.href = document.referrer;
+            },
+            error: function () {
+                alert(
+                    "Hi ha agut un error intentant eliminar el element seleccionat."
+                );
+            },
+        }).done();
     });
 });

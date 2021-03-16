@@ -56,8 +56,10 @@ class TermCourseController extends Controller
     public function show($curso, $cicle)
     {
         $career = Career::findOrFail($cicle);
-        $term = $career->term;
-        return view('careers.show', ['term' => $term, 'career' => $career]);
+        if (!$career->trashed()) {
+            $term = $career->term;
+            return view('careers.show', ['term' => $term, 'career' => $career]);
+        }
     }
 
     /**
@@ -86,10 +88,11 @@ class TermCourseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  int  $curso
      * @param  int  $cicle
      * @return \Illuminate\Http\Response
      */
-    public function destroy($cicle)
+    public function destroy($curso, $cicle)
     {
         $career = Career::findOrFail($cicle);
         $career->delete();
