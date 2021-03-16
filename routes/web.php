@@ -23,6 +23,10 @@ Route::get('/sample-page', function () {
     return view('sample');
 });
 
+Route::get('/alumnes', function () {
+    return view("users/index");
+});
+
 Route::get('dashboard', function () {
     if (Auth::user()->isAdmin()) {
         return redirect('admin/dashboard');

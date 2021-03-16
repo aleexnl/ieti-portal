@@ -228,5 +228,14 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+    
+    'providers' => [
+        .....
+        DaveJamesMiller\Breadcrumbs\BreadcrumbsServiceProvider::class
+    ],
+    'alias' => [
+        .....
+        "Breadcrumbs" => DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs::class 
+    ]
 
 ];
