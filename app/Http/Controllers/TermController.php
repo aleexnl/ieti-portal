@@ -105,8 +105,7 @@ class TermController extends Controller
     public function destroy($id)
     {
         $term = Term::findOrFail($id);
-        $term->active = 0;
-        $term->save();
+        $term->delete();
         Log::warning(
             "Soft-deleted course " . $term->name,
             ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]

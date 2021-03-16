@@ -15,12 +15,12 @@ class CreateTermsTable extends Migration
     {
         Schema::create('terms', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('name');
             $table->text('description');
             $table->date('start_date');
             $table->date('end_date');
-            $table->boolean('active')->default(1);
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

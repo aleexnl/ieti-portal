@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Term;
 use App\Models\Career;
@@ -12,6 +14,7 @@ class TermCourseController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param int $curso
      * @return \Illuminate\Http\Response
      */
     public function index($curso)
@@ -46,7 +49,8 @@ class TermCourseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $curso
+     * @param  int  $cicle
      * @return \Illuminate\Http\Response
      */
     public function show($curso, $cicle)
@@ -82,11 +86,16 @@ class TermCourseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $cicle
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($cicle)
     {
-        //
+        $career = Career::findOrFail($cicle);
+        $career->delete();
+        Log::warning(
+            "Soft-deleted career " . $career->name,
+            ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]
+        );
     }
 }
