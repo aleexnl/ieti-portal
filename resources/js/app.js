@@ -16,10 +16,12 @@ function cancelEdit(textName, textDesc, value) {
     $(".terms > tbody > tr > td .edit-button").css("display", "block");
 }
 $(function () {
+    // Redirect to the selected table cell
     $(".terms > tbody > tr[data-href]").on("click", function () {
         window.location = $(this).data("href");
         return false;
     });
+    //Open row controls
     $(".terms > tbody > tr > td .toggler").on("click", function (event) {
         event.stopPropagation();
         $(this).toggleClass("rotate-180");
@@ -86,15 +88,6 @@ $(function () {
             });
         }
     );
-    $("#confirm-delete button.delete-modal-close").on(
-        "click",
-        function (event) {
-            event.stopPropagation();
-            $("#confirm-delete").toggleClass("hidden");
-            $("#confirm-delete button.delete-button").off("click");
-            $("#confirm-delete input").off("input");
-        }
-    );
     $("#add-new-term").on("click", function (event) {
         event.stopPropagation();
         $("#create-course-form").toggleClass("hidden");
@@ -123,5 +116,8 @@ $(function () {
             data: data,
         }); /*.done(() => {
         });*/
+        $("#delete-form").on("submit", function (event) {
+            event.preventDefault();
+        });
     });
 });

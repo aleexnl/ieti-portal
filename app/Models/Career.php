@@ -10,6 +10,6 @@ class Career extends Model
     use HasFactory;
     public function term()
     {
-        return $this->hasOne(Term::class);
+        return $this->belongsTo(Term::class);
     }
 }

@@ -49,8 +49,11 @@ class TermCourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($curso, $cicle)
     {
+        $career = Career::findOrFail($cicle);
+        $term = $career->term;
+        return view('careers.show', ['term' => $term, 'career' => $career]);
     }
 
     /**
