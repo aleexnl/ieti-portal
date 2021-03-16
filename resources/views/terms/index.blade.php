@@ -3,6 +3,7 @@
         Cursos
 
     </x-slot>
+
     <div id="create-course-form" class="bg-gray-200 p-6 my-3 rounded-md hidden">
 
         <div class="flex flex-col mb-2">

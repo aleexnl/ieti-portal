@@ -2,6 +2,7 @@
     <x-slot name="header">
         Dashboard
     </x-slot>
+
     <div class="flex">
         @include('flash-message')
 

@@ -28,3 +28,4 @@ Route::resource('alumnes', UserController::class)->names([
     'index' => 'alumnes'
 ]);
 Route::resource('cursos.cicles', TermCourseController::class);
+

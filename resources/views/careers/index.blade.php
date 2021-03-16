@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot name="header">
-        Cursos
+        Cursos/{{$term->name}}/Cicles
     </x-slot>
     <table class="w-full terms">
         <thead>

@@ -20,6 +20,7 @@ class CreateCareersTable extends Migration
             $table->text('description');
             $table->foreignId('term_id')->constrained('terms');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
