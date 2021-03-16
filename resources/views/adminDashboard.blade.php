@@ -2,6 +2,11 @@
     <x-slot name="header">
         Dashboard
     </x-slot>
+    
+    @section('breadcrumbs')
+        {{ Breadcrumbs::render('dashboard') }}
+    @endsection
+
     <div class="flex">
         @include('flash-message')
 
