@@ -21,6 +21,7 @@ Breadcrumbs::for('students', static function ($trail) {
 });
 
 // Dashboard > Terms > [Term]
+
 Breadcrumbs::for('term', function ($trail, $term) {
     $trail->parent('terms');
     $trail->push($term->name, '/dashboard/terms/delete/{term_id}');
