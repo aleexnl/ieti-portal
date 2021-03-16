@@ -2,10 +2,10 @@
     <x-slot name="header">
         Dashboard
     </x-slot>
+    <div class="errores">
 
+    </div>
     <div class="flex">
-        @include('flash-message')
-
         <div class="bg-gray-100 m-5 px-5 rounded-md">
             <a href="cursos">
                 <h3>Cursos</h3>

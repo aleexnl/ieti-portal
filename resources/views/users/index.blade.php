@@ -3,6 +3,9 @@
         Alumnes
 
     </x-slot>
+    <div class="errores">
+
+    </div>
     <div id="create-user-form" class="bg-gray-200 p-6 my-3 rounded-md hidden">
         <div class="flex flex-col mb-2">
             <label for="user">Nom</label>

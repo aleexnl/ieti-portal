@@ -3,7 +3,9 @@
         Cursos
 
     </x-slot>
+    <div class="errores">
 
+    </div>
     <div id="create-course-form" class="bg-gray-200 p-6 my-3 rounded-md hidden">
         <div class="flex flex-col mb-2">
             <label for="course">Nom del Curs</label>
@@ -53,8 +55,7 @@
                     </div>
                 </td>
                 <td>
-                    <p class="overflow-hidden overflow-ellipsis whitespace-nowrap w-36" id="description"
-                        value="{{$term->id}}">
+                    <p class="overflow-hidden overflow-ellipsis whitespace-nowrap w-36" id="description" value="{{$term->id}}">
                         {{$term->description}}
                     </p>
                 </td>
