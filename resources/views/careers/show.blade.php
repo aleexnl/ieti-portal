@@ -2,8 +2,11 @@
     <x-slot name="header">
         Cursos/{{$term->name}}/Cicles/{{$career->name}}
     </x-slot>
-    <h1>¡ATENCIÓ!</h1>
-    <p>Esteu a punt d'eliminar {{$career->name}}, aquesta acció pot causar inconsistencies a la aplicacio. ¿Voleu
+    <h1 class="dark:text-purple-500">¡ATENCIÓ!</h1>
+    <p class="dark:text-purple-200">Esteu a punt d'eliminar {{$career->name}}, aquesta acció pot causar inconsistencies
+        a
+        la
+        aplicacio. ¿Voleu
         procedir?</p>
     <input type="text" placeholder="{{$career->name}}" class="mt-2" id="delete-checker">
     <div class="flex my-5">

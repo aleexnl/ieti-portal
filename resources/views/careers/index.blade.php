@@ -5,10 +5,10 @@
     <table class="w-full terms">
         <thead>
             <tr>
-                <th>Codi</th>
-                <th>Nom</th>
-                <th>Descripció</th>
-                <th>Accions</th>
+                <th class="dark:bg-purple-900">Codi</th>
+                <th class="dark:bg-purple-900">Nom</th>
+                <th class="dark:bg-purple-900">Descripció</th>
+                <th class="dark:bg-purple-900">Accions</th>
             </tr>
         </thead>
         <tbody>
