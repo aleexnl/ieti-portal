@@ -4,7 +4,6 @@
 
     </x-slot>
     <div class="errores">
-
     </div>
     <div id="create-course-form" class="bg-gray-200 p-6 my-3 rounded-md hidden dark:bg-purple-200">
         <div class="flex flex-col mb-2">
@@ -55,8 +54,7 @@
                     </div>
                 </td>
                 <td>
-                    <p class="overflow-hidden overflow-ellipsis whitespace-nowrap w-36" id="description"
-                        value="{{$term->id}}">
+                    <p class="overflow-hidden overflow-ellipsis whitespace-nowrap w-36" id="description" value="{{$term->id}}">
                         {{$term->description}}
                     </p>
                 </td>
@@ -67,12 +65,9 @@
                             {{$term->end_date}}
                         </p>
                         <div class="flex flex-col controls hidden">
-                            <button class="bg-gray-300 dark:bg-purple-900 dark:text-white my-1 w-full edit-button"
-                                value="{{$term->id}}">Editar</button>
+                            <button class="primary bg-gray-300 dark:bg-purple-900 dark:text-white my-1 w-full edit-button" value="{{$term->id}}">Editar</button>
                             <a href="cursos/{{$term->id}}">
-                                <button
-                                    class="secondary bg-gray-300 dark:bg-purple-200 dark:text-gray-900 my-1 w-full delete-button"
-                                    id="delete-button">Eliminar</button>
+                                <button class="secondary bg-gray-300 dark:bg-purple-200 dark:text-gray-900 my-1 w-full delete-button" id="delete-button">Eliminar</button>
                             </a>
                         </div>
                     </div>

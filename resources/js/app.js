@@ -15,14 +15,19 @@ function cancelEdit(textName, textDesc, value) {
     $(".terms > tbody > tr > td .delete-button").css("display", "block ");
     $(".terms > tbody > tr > td .edit-button").css("display", "block");
 }
-function inputNotification(text){
-    var elemento =  "<p>"+text+"</p>";
-    $(".errores").append(elemento)
-}
+
 function notification(type, text) {
     if (type == "success") {
+        $(".errores").append(`<div class="w-full bg-green-200 p-3 border-2 border-green-400 rounded-lg">
+            <p>${text}</p>
+         </div>`)
+    }else if(type == "error"){
+        $(".errores").append(`<div class="w-full bg-red-200 p-3 border-2 border-red-400 rounded-lg">
+        <p>${text}</p>
+     </div>`)
     }
 }
+
 $(function () {
     // Redirect to the selected table cell
     $(".terms > tbody > tr[data-href]").on("click", function () {
@@ -60,7 +65,7 @@ $(function () {
             $("div[value='" + value + "']")
                 .find("p")
                 .after(
-                    "<button class='bg-gray-300 dark:bg-purple-900 dark:text-white my-1 w-full confirm-button' value='" +
+                    "<button class='primary bg-gray-300 dark:bg-purple-900 dark:text-white my-1 w-full confirm-button' value='" +
                         value +
                         "'>Confirmar</button>"
                 );
@@ -87,7 +92,7 @@ $(function () {
                     url: `/admin/cursos/${value}`,
                     method: "PUT",
                 }).done(() => {
-                    inputNotification("Todo guay")
+                    notification("success","Todo guay")
                     console.log($("#errores"))
                     cancelEdit(name, description, value);
                 }).fail(() => {
@@ -132,9 +137,11 @@ $(function () {
             dataType: "json",
             data: data,
         }).done(() => {
-            inputNotification("Todo guay")
+            $("#create-course-form").toggleClass("hidden");
+            $("#add-new-term").toggleClass("hidden");
+            notification("success","Todo guay")
         }).fail(()=>{
-            inputNotification("Todo mal")
+            notification("error","Todo mal")
         });
     });
     // Delete button redirect

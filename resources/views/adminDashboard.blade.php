@@ -3,7 +3,6 @@
         Dashboard
     </x-slot>
     <div class="errores">
-
     </div>
     <div class="flex flex-col">
         <div class="bg-gray-100 dark:bg-purple-200 m-5 px-5 rounded-md">

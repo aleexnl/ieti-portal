@@ -22,13 +22,12 @@ function cancelEdit(textName, textDesc, value) {
   $(".terms > tbody > tr > td .edit-button").css("display", "block");
 }
 
-function inputNotification(text) {
-  var elemento = "<p>" + text + "</p>";
-  $(".errores").append(elemento);
-}
-
 function notification(type, text) {
-  if (type == "success") {}
+  if (type == "success") {
+    $(".errores").append("<div class=\"w-full bg-green-200 p-3 border-2 border-green-400 rounded-lg\">\n            <p>".concat(text, "</p>\n         </div>"));
+  } else if (type == "error") {
+    $(".errores").append("<div class=\"w-full bg-red-200 p-3 border-2 border-red-400 rounded-lg\">\n        <p>".concat(text, "</p>\n     </div>"));
+  }
 }
 
 $(function () {
@@ -51,7 +50,7 @@ $(function () {
     var name = $("p[id='name'][value='" + value + "']").text();
     var description = $("p[id='description'][value='" + value + "']").text();
     $("div[value='" + value + "']").find("p").after("<button class='secondary bg-gray-300 dark:bg-purple-200 dark:text-gray-900 my-1 w-full cancel-button' value='" + value + "'>Cancelar</button>");
-    $("div[value='" + value + "']").find("p").after("<button class='bg-gray-300 dark:bg-purple-900 dark:text-white my-1 w-full confirm-button' value='" + value + "'>Confirmar</button>");
+    $("div[value='" + value + "']").find("p").after("<button class='primary bg-gray-300 dark:bg-purple-900 dark:text-white my-1 w-full confirm-button' value='" + value + "'>Confirmar</button>");
     $("p[id='name'][value='" + value + "']").replaceWith("<input class='nameInput' value='" + name + "'></input>");
     $("p[id='description'][value='" + value + "']").replaceWith("<textarea class='descInput'>" + description + "</textarea>");
     $(".confirm-button").on("click", function (event) {
@@ -69,7 +68,7 @@ $(function () {
         url: "/admin/cursos/".concat(value),
         method: "PUT"
       }).done(function () {
-        inputNotification("Todo guay");
+        notification("success", "Todo guay");
         console.log($("#errores"));
         cancelEdit(name, description, value);
       }).fail(function () {});
@@ -109,9 +108,11 @@ $(function () {
       dataType: "json",
       data: data
     }).done(function () {
-      inputNotification("Todo guay");
+      $("#create-course-form").toggleClass("hidden");
+      $("#add-new-term").toggleClass("hidden");
+      notification("success", "Todo guay");
     }).fail(function () {
-      inputNotification("Todo mal");
+      notification("error", "Todo mal");
     });
   }); // Delete button redirect
 
