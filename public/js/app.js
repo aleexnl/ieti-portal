@@ -57,6 +57,9 @@ $(function () {
   $(".terms > tbody > tr > td button.edit-button").on("click", function (event) {
     event.stopPropagation();
     $(this).css("display", "none");
+    $("input").on("click", function (event) {
+      event.stopPropagation();
+    });
     $(".terms > tbody > tr > td button.delete-button").css("display", "none");
     var value = $(this).attr("value");
     var name = $("p[id='name'][value='" + value + "']").text();
