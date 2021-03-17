@@ -57,7 +57,7 @@ $(function () {
           "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
         },
         data: data,
-        url: "/cursos/".concat(value),
+        url: "/admin/cursos/".concat(value),
         method: "PUT"
       }).done(function () {
         cancelEdit(name, description, value, term);
@@ -67,18 +67,21 @@ $(function () {
       event.stopPropagation();
       cancelEdit(name, description, value);
     });
-  });
+  }); // Show form to create course
+
   $("#add-new-term").on("click", function (event) {
     event.stopPropagation();
     $("#create-course-form").toggleClass("hidden");
     $(this).toggleClass("hidden");
-  });
+  }); // Hide form to cancel course creation
+
   $("#cancel-course-creation").on("click", function (event) {
     event.stopPropagation();
     $("#create-course-form").toggleClass("hidden");
     $("#add-new-term").toggleClass("hidden");
-  });
-  $("#add-element").on("click", function (event) {
+  }); // Add course in form
+
+  $("#add-course").on("click", function (event) {
     event.stopPropagation();
     var data = {
       name: $("#course_name").val(),
@@ -90,13 +93,12 @@ $(function () {
       headers: {
         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
       },
-      url: "/cursos",
+      url: "/admin/cursos",
       method: "POST",
       dataType: "json",
       data: data
+    }).done(function () {// Your code here
     });
-    /*.done(() => {
-    });*/
   }); // Delete button redirect
 
   $("#delete-button").on("click", function (event) {
