@@ -17,7 +17,7 @@ function cancelEdit(textName, textDesc, value) {
 }
 function inputNotification(text){
     var elemento =  "<p>"+text+"</p>";
-    $(".errors").append(elemento)
+    $(".errores").append(elemento)
 }
 function notification(type,text){
     if (type == 'success'){
@@ -88,9 +88,10 @@ $(function () {
                     url: `/admin/cursos/${value}`,
                     method: "PUT",
                 }).done(() => {
-                    cancelEdit(name, description, value, term);
-                }).fail(() => {
                     inputNotification("Todo guay")
+                    console.log($("#errores"))
+                    cancelEdit(name, description, value);
+                }).fail(() => {
 
                 });
             });
@@ -102,7 +103,9 @@ $(function () {
     );
     // Show form to create course
     $("#add-new-term").on("click", function (event) {
-        event.stopPropagation();
+        event.stopPropagation(
+
+        );
         $("#create-course-form").toggleClass("hidden");
         $(this).toggleClass("hidden");
     });
@@ -130,7 +133,9 @@ $(function () {
             dataType: "json",
             data: data,
         }).done(() => {
-            // Your code here
+            inputNotification("Todo guay")
+        }).fail(()=>{
+            inputNotification("Todo mal")
         });
     });
     // Delete button redirect

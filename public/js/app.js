@@ -22,6 +22,15 @@ function cancelEdit(textName, textDesc, value) {
   $(".terms > tbody > tr > td .edit-button").css("display", "block");
 }
 
+function inputNotification(text) {
+  var elemento = "<p>" + text + "</p>";
+  $(".errores").append(elemento);
+}
+
+function notification(type, text) {
+  if (type == 'success') {}
+}
+
 $(function () {
   // Redirect to the selected table cell
   $(".terms > tbody > tr[data-href]").on("click", function () {
@@ -60,8 +69,10 @@ $(function () {
         url: "/admin/cursos/".concat(value),
         method: "PUT"
       }).done(function () {
-        cancelEdit(name, description, value, term);
-      });
+        inputNotification("Todo guay");
+        console.log($("#errores"));
+        cancelEdit(name, description, value);
+      }).fail(function () {});
     });
     $(".cancel-button").on("click", function (event) {
       event.stopPropagation();
@@ -97,7 +108,10 @@ $(function () {
       method: "POST",
       dataType: "json",
       data: data
-    }).done(function () {// Your code here
+    }).done(function () {
+      inputNotification("Todo guay");
+    }).fail(function () {
+      inputNotification("Todo mal");
     });
   }); // Delete button redirect
 
