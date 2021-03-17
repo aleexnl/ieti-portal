@@ -26,9 +26,14 @@ function notification(type, text) {
         <p>${text}</p>
      </div>`)
     }
+
+    setTimeout(function(){
+        $(".errores").empty();
+    }, 3000)
 }
 
 $(function () {
+  
     // Redirect to the selected table cell
     $(".terms > tbody > tr[data-href]").on("click", function () {
         window.location = $(this).data("href");
@@ -40,10 +45,11 @@ $(function () {
         $(this).toggleClass("rotate-180");
         $(this).closest("tr").find(".controls").toggleClass("hidden");
     });
-
+ 
     $(".terms > tbody > tr > td button.edit-button").on(
         "click",
         function (event) {
+            
             event.stopPropagation();
             $(this).css("display", "none");
             $(".terms > tbody > tr > td button.delete-button").css(
@@ -52,6 +58,7 @@ $(function () {
             );
             let value = $(this).attr("value");
             let name = $("p[id='name'][value='" + value + "']").text();
+            $("tr[value='" + value + "']").removeAttr("data-href");
             let description = $(
                 "p[id='description'][value='" + value + "']"
             ).text();
@@ -75,6 +82,12 @@ $(function () {
             $("p[id='description'][value='" + value + "']").replaceWith(
                 "<textarea class='descInput'>" + description + "</textarea>"
             );
+            $(".descInput").on("click", function (event){
+                event.stopPropagation()
+            })
+            $(".nameInput").on("click", function (event){
+                event.stopPropagation()
+            })
             $(".confirm-button").on("click", function (event) {
                 event.stopPropagation();
                 let data = {
@@ -92,7 +105,7 @@ $(function () {
                     url: `/admin/cursos/${value}`,
                     method: "PUT",
                 }).done(() => {
-                    notification("success","Todo guay")
+                    notification("success","Curso editado correctamente")
                     console.log($("#errores"))
                     cancelEdit(name, description, value);
                 }).fail(() => {
@@ -101,6 +114,7 @@ $(function () {
             });
             $(".cancel-button").on("click", function (event) {
                 event.stopPropagation();
+                notification("error","No se ha podido editar el curso")
                 cancelEdit(name, description, value);
             });
         }
@@ -139,9 +153,9 @@ $(function () {
         }).done(() => {
             $("#create-course-form").toggleClass("hidden");
             $("#add-new-term").toggleClass("hidden");
-            notification("success","Todo guay")
+            notification("success","Curso añadido correctamente")
         }).fail(()=>{
-            notification("error","Todo mal")
+            notification("error","No se ha podido añadir el curso")
         });
     });
     // Delete button redirect
@@ -167,7 +181,10 @@ $(function () {
             url: url,
             method: "DELETE",
             success: function () {
-                window.location.href = document.referrer;
+                notification("success","Elemento borrado perfectamente")
+                setTimeout(function(){
+                    window.location.href = document.referrer;
+                }, 3000)
             },
             error: function () {
                 alert(
@@ -176,4 +193,5 @@ $(function () {
             },
         }).done();
     });
+    
 });

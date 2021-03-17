@@ -43,7 +43,7 @@
             @if ($terms)
             @foreach ($terms as $term)
             @if (!$term->trashed())
-            <tr class="accordion cursor-pointer" data-href="cursos/{{$term->id}}/cicles">
+            <tr class="accordion cursor-pointer" value="{{$term->id}}" data-href="cursos/{{$term->id}}/cicles">
                 <td class="bg-gray-300 dark:bg-purple-300 w-1/4">
                     <div class="flex">
                         <x-chevron-down class="w-6 mr-2 transform inline toggler dark:text-purple-700" />
@@ -66,6 +66,7 @@
                         <div class="flex flex-col controls hidden">
                             <button class="primary bg-gray-300 dark:bg-purple-900 dark:text-white my-1 w-full edit-button" value="{{$term->id}}">Editar</button>
                             <a href="cursos/{{$term->id}}">
+                                <button class="primary bg-gray-300 dark:bg-purple-200 dark:text-gray-900 my-1 w-full delete-button" id="delete-button">Editar</button>
                                 <button class="secondary bg-gray-300 dark:bg-purple-200 dark:text-gray-900 my-1 w-full delete-button" id="delete-button">Eliminar</button>
                             </a>
                         </div>
