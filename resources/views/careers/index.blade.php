@@ -2,6 +2,8 @@
     <x-slot name="header">
         {{ Breadcrumbs::render('careers', $term) }}
     </x-slot>
+    <div class="errores">
+    </div>
     <table class="w-full terms">
         <thead>
             <tr>

@@ -80,15 +80,13 @@ class TermCourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $term, $id)
     {
         $career = Career::findOrFail($id);
         $old_career = $career->name;
         $career->code = $request->code;
         $career->name = $request->name;
         $career->description = $request->description;
-        //$term->start_date = $request->start_date;
-        //$term->end_date = $request->end_date;
         $career->save();
 
         Log::warning(
