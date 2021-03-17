@@ -29,6 +29,26 @@ function notification(type, text) {
     }
 }
 $(function () {
+    if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+        $("#darkmode-toggle").prop("checked", true);
+        document.documentElement.classList.add("dark");
+    } else {
+        document.documentElement.classList.remove("dark");
+    }
+    // Dark mode toggler
+    $("#darkmode-toggle").on("click", function (event) {
+        if ($("html").hasClass("dark")) {
+            localStorage.theme = "light";
+            $("html").removeClass("dark");
+        } else {
+            localStorage.theme = "dark";
+            $("html").addClass("dark");
+        }
+    });
     // Redirect to the selected table cell
     $(".terms > tbody > tr[data-href]").on("click", function () {
         window.location = $(this).data("href");

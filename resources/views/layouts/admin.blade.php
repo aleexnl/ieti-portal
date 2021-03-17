@@ -36,14 +36,14 @@
 
 <body class="antialiased bg-gray-50 dark:bg-gray-800">
     <nav class="h-full w-56 bg-gray-200 dark:bg-gray-900 fixed top-0 left-0 z-50 overflow-x-hidden">
-        <div class="m-5 flex justify-center">
+        <div class="p-5 flex justify-center">
             <x-application-logo class="w-28 fill-current text-gray-900 dark:text-white" />
         </div>
         <div class="flex justify-center">
             <span
                 class="bg-red-200 px-2 rounded-md text-red-700 dark:text-purple-700 dark:bg-purple-200">Administració</span>
         </div>
-        <div class="flex flex-col mt-5">
+        <div class="flex flex-col pt-5">
             <x-nav-link href="{{route('admindashboard')}}" :active="(request()->segment(2) == 'dashboard')">
                 Panel de control
             </x-nav-link>
@@ -53,6 +53,12 @@
             <x-nav-link href="{{route('adminalumnes')}}" :active="request()->segment(2) == 'alumnes'">
                 Alumnes
             </x-nav-link>
+            <div class="flex my-5 mx-2">
+                <label for="darkmode-toggle" class="dark:text-purple-500">Dark mode</label>
+                <input type="checkbox" name="darkmode-toggle" id="darkmode-toggle"
+                    class=" w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer ml-2" />
+            </div>
+
         </div>
 
     </nav>
