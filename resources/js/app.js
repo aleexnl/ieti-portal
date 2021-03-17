@@ -15,23 +15,23 @@ function cancelEdit(textName, textDesc, value) {
     $(".terms > tbody > tr > td .delete-button").css("display", "block ");
     $(".terms > tbody > tr > td .edit-button").css("display", "block");
 }
-
 function notification(type, text) {
     if (type == "success") {
-        $(".errores").append(`<div class="w-full bg-green-200 p-3 border-2 border-green-400 rounded-lg">
+        $(".errores")
+            .append(`<div class="w-full bg-green-200 p-3 border-2 border-green-400 rounded-lg">
             <p>${text}</p>
-         </div>`)
-    }else if(type == "error"){
-        $(".errores").append(`<div class="w-full bg-red-200 p-3 border-2 border-red-400 rounded-lg">
+         </div>`);
+    } else if (type == "error") {
+        $(".errores")
+            .append(`<div class="w-full bg-red-200 p-3 border-2 border-red-400 rounded-lg">
         <p>${text}</p>
-     </div>`)
+     </div>`);
     }
 
     setTimeout(function(){
         $(".errores").empty();
     }, 3000)
 }
-
 $(function () {
   
     // Redirect to the selected table cell
@@ -52,6 +52,9 @@ $(function () {
             
             event.stopPropagation();
             $(this).css("display", "none");
+            $("input").on("click", function (event) {
+                event.stopPropagation();
+            });
             $(".terms > tbody > tr > td button.delete-button").css(
                 "display",
                 "none"
@@ -121,9 +124,7 @@ $(function () {
     );
     // Show form to create course
     $("#add-new-term").on("click", function (event) {
-        event.stopPropagation(
-
-        );
+        event.stopPropagation();
         $("#create-course-form").toggleClass("hidden");
         $(this).toggleClass("hidden");
     });
@@ -193,5 +194,5 @@ $(function () {
             },
         }).done();
     });
-    
+
 });

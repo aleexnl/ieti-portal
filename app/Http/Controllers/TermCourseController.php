@@ -32,7 +32,7 @@ class TermCourseController extends Controller
      */
     public function create()
     {
-        //
+        // return response()->json(['success' => true, 'last_insert_id' => $career->id]);
     }
 
     /**
