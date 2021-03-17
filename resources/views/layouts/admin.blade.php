@@ -34,13 +34,14 @@
 
 </head>
 
-<body class="antialiased bg-gray-50">
-    <nav class="h-full w-56 bg-gray-200 fixed top-0 left-0 z-50 overflow-x-hidden">
+<body class="antialiased bg-gray-50 dark:bg-gray-800">
+    <nav class="h-full w-56 bg-gray-200 dark:bg-gray-900 fixed top-0 left-0 z-50 overflow-x-hidden">
         <div class="m-5 flex justify-center">
-            <x-application-logo class="w-28 fill-current text-gray-900" />
+            <x-application-logo class="w-28 fill-current text-gray-900 dark:text-white" />
         </div>
         <div class="flex justify-center">
-            <span class="bg-red-200 px-2 rounded-md text-red-700">Administració</span>
+            <span
+                class="bg-red-200 px-2 rounded-md text-red-700 dark:text-purple-700 dark:bg-purple-200">Administració</span>
         </div>
         <div class="flex flex-col mt-5">
             <x-nav-link href="{{route('admindashboard')}}" :active="(request()->segment(2) == 'dashboard')">
@@ -56,7 +57,7 @@
 
     </nav>
     <main class="ml-56">
-        <h2 class="text-gray-700 ml-4 my-6 text-4xl">{{ $header }}</h2>
+        <h2 class="text-gray-700 ml-4 my-6 text-4xl dark:text-purple-300">{{ $header }}</h2>
         <div class="container mx-auto px-5">
             {{ $slot }}
         </div>

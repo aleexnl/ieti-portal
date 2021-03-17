@@ -28,10 +28,10 @@
     <table class="w-full users">
         <thead>
             <tr>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Fecha de creacion</th>
-                <th>Fecha de ultima actualizacion</th>
+                <th class="dark:bg-purple-900">Nom</th>
+                <th class="dark:bg-purple-900">Email</th>
+                <th class="dark:bg-purple-900">Fecha de creacion</th>
+                <th class="dark:bg-purple-900">Fecha de ultima actualizacion</th>
 
             </tr>
         </thead>

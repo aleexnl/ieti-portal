@@ -96,9 +96,12 @@ class TermCourseController extends Controller
     {
         $career = Career::findOrFail($cicle);
         $career->delete();
+
         Log::warning(
             "Soft-deleted career " . $career->name,
             ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]
         );
+
+        return ['done' => true];
     }
 }

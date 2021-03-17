@@ -19,9 +19,8 @@ function inputNotification(text){
     var elemento =  "<p>"+text+"</p>";
     $(".errores").append(elemento)
 }
-function notification(type,text){
-    if (type == 'success'){
-
+function notification(type, text) {
+    if (type == "success") {
     }
 }
 $(function () {
@@ -54,14 +53,14 @@ $(function () {
             $("div[value='" + value + "']")
                 .find("p")
                 .after(
-                    "<button class='secondary my-1 w-full cancel-button' value='" +
+                    "<button class='secondary bg-gray-300 dark:bg-purple-200 dark:text-gray-900 my-1 w-full cancel-button' value='" +
                         value +
                         "'>Cancelar</button>"
                 );
             $("div[value='" + value + "']")
                 .find("p")
                 .after(
-                    "<button class='primary my-1 w-full confirm-button' value='" +
+                    "<button class='bg-gray-300 dark:bg-purple-900 dark:text-white my-1 w-full confirm-button' value='" +
                         value +
                         "'>Confirmar</button>"
                 );
