@@ -47,12 +47,31 @@ function notification(type, text) {
      </div>`);
     }
 
-    setTimeout(function(){
+    setTimeout(function () {
         $(".errores").empty();
-    }, 3000)
+    }, 3000);
 }
 $(function () {
-  
+    if (
+        localStorage.theme === "dark" ||
+        (!("theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+        $("#darkmode-toggle").prop("checked", true);
+        document.documentElement.classList.add("dark");
+    } else {
+        document.documentElement.classList.remove("dark");
+    }
+    // Dark mode toggler
+    $("#darkmode-toggle").on("click", function (event) {
+        if ($("html").hasClass("dark")) {
+            localStorage.theme = "light";
+            $("html").removeClass("dark");
+        } else {
+            localStorage.theme = "dark";
+            $("html").addClass("dark");
+        }
+    });
     // Redirect to the selected table cell
     $(".terms > tbody > tr[data-href]").on("click", function () {
         window.location = $(this).data("href");
@@ -64,11 +83,10 @@ $(function () {
         $(this).toggleClass("rotate-180");
         $(this).closest("tr").find(".controls").toggleClass("hidden");
     });
- 
+
     $(".terms > tbody > tr > td button.edit-button").on(
         "click",
         function (event) {
-            
             event.stopPropagation();
             $(this).css("display", "none");
             $(".terms > tbody > tr > td button.delete-button").css(
@@ -164,13 +182,15 @@ $(function () {
             method: "POST",
             dataType: "json",
             data: data,
-        }).done(() => {
-            $("#create-course-form").toggleClass("hidden");
-            $("#add-new-term").toggleClass("hidden");
-            notification("success","Curso añadido correctamente")
-        }).fail(()=>{
-            notification("error","No se ha podido añadir el curso")
-        });
+        })
+            .done(() => {
+                $("#create-course-form").toggleClass("hidden");
+                $("#add-new-term").toggleClass("hidden");
+                notification("success", "Curso añadido correctamente");
+            })
+            .fail(() => {
+                notification("error", "No se ha podido añadir el curso");
+            });
     });
     // Delete button redirect
     $("#delete-button").on("click", function (event) {
@@ -195,10 +215,10 @@ $(function () {
             url: url,
             method: "DELETE",
             success: function () {
-                notification("success","Elemento borrado perfectamente")
-                setTimeout(function(){
+                notification("success", "Elemento borrado perfectamente");
+                setTimeout(function () {
                     window.location.href = document.referrer;
-                }, 3000)
+                }, 3000);
             },
             error: function () {
                 alert(
