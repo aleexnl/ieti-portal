@@ -46,9 +46,6 @@ $(function () {
         function (event) {
             event.stopPropagation();
             $(this).css("display", "none");
-            $("input").on("click", function (event) {
-                event.stopPropagation();
-            });
             $(".terms > tbody > tr > td button.delete-button").css(
                 "display",
                 "none"
@@ -78,6 +75,9 @@ $(function () {
             $("p[id='description'][value='" + value + "']").replaceWith(
                 "<textarea class='descInput'>" + description + "</textarea>"
             );
+            $("input, textarea").on("click", function (event) {
+                event.stopPropagation();
+            });
             $(".confirm-button").on("click", function (event) {
                 event.stopPropagation();
                 let data = {

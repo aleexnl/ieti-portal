@@ -45,9 +45,6 @@ $(function () {
   $(".terms > tbody > tr > td button.edit-button").on("click", function (event) {
     event.stopPropagation();
     $(this).css("display", "none");
-    $("input").on("click", function (event) {
-      event.stopPropagation();
-    });
     $(".terms > tbody > tr > td button.delete-button").css("display", "none");
     var value = $(this).attr("value");
     var name = $("p[id='name'][value='" + value + "']").text();
@@ -56,6 +53,9 @@ $(function () {
     $("div[value='" + value + "']").find("p").after("<button class='primary bg-gray-300 dark:bg-purple-900 dark:text-white my-1 w-full confirm-button' value='" + value + "'>Confirmar</button>");
     $("p[id='name'][value='" + value + "']").replaceWith("<input class='nameInput' value='" + name + "'></input>");
     $("p[id='description'][value='" + value + "']").replaceWith("<textarea class='descInput'>" + description + "</textarea>");
+    $("input, textarea").on("click", function (event) {
+      event.stopPropagation();
+    });
     $(".confirm-button").on("click", function (event) {
       event.stopPropagation();
       var data = {
