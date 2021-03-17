@@ -82,7 +82,21 @@ class TermCourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $career = Career::findOrFail($id);
+        $old_career = $career->name;
+        $career->code = $request->code;
+        $career->name = $request->name;
+        $career->description = $request->description;
+        //$term->start_date = $request->start_date;
+        //$term->end_date = $request->end_date;
+        $career->save();
+
+        Log::warning(
+            "Updated course " . $old_career . "to " . $career->name,
+            ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]
+        );
+
+        return ['done' => true];
     }
 
     /**

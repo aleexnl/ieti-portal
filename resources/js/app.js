@@ -1,5 +1,24 @@
 import "./bootstrap";
-function cancelEdit(textName, textDesc, value) {
+function cancelEdit(textName, textDesc, value,code) {
+ 
+    if (code){
+        $(".nameInput").replaceWith(
+            "<p id='name' value='" + value + "'>" + textName + "</p>"
+        );
+        $(".descInput").replaceWith(
+            "<p id='description' value='" +
+                value +
+                "'>" +
+                textDesc +
+                "</p>"
+        );
+        $(".codeInput").replaceWith(
+            "<p id='code' value='" + value + "'>" + code + "</p>"
+        );
+        $(".terms > tbody > tr > td .editCareer-button").css("display", "block ");
+
+    }
+    
     $(".nameInput").replaceWith(
         "<p id='name' value='" + value + "'>" + textName + "</p>"
     );
@@ -58,7 +77,7 @@ $(function () {
             );
             let value = $(this).attr("value");
             let name = $("p[id='name'][value='" + value + "']").text();
-            $("tr[value='" + value + "']").removeAttr("data-href");
+            
             let description = $(
                 "p[id='description'][value='" + value + "']"
             ).text();
@@ -106,12 +125,12 @@ $(function () {
                     console.log($("#errores"))
                     cancelEdit(name, description, value);
                 }).fail(() => {
+                    notification("error","No se ha podido editar el curso")
 
                 });
             });
             $(".cancel-button").on("click", function (event) {
                 event.stopPropagation();
-                notification("error","No se ha podido editar el curso")
                 cancelEdit(name, description, value);
             });
         }
@@ -188,5 +207,62 @@ $(function () {
             },
         }).done();
     });
+    $(".editCareer-button").on("click", function(event){
+        let value= $(this).attr("value");
+        console.log(value)
+        let url=(window.location.pathname+`/${value}`)
+        console.log(url)
+        let name = $("p[id='name'][value='" + value + "']").text();
+        let code = $("p[id='code'][value='" + value + "']").text();
+        let description = $(
+            "p[id='description'][value='" + value + "']"
+        ).text();
+        $("button[id='editCareer-button'][value='" + value + "']").css("display", "none");
+        $("button[id='delete-button'][value='" + value + "']").css("display", "none");
+        $("div[value='" + value + "']").append("<button class='primary bg-gray-300 dark:bg-purple-900 dark:text-white my-1 w-full confirm-button' value='" +
+        value +
+        "'>Confirmar</button>")
+        $("div[value='" + value + "']").append("<button class='secondary bg-gray-300 dark:bg-purple-200 dark:text-gray-900 my-1 w-full cancel-button' value='" +
+        value +
+        "'>Cancelar</button>")
+        $("p[id='name'][value='" + value + "']").replaceWith(
+            "<input class='nameInput' value='" + name + "'></input>"
+        );
+        $("p[id='code'][value='" + value + "']").replaceWith(
+            "<input class='codeInput' value='" + code  + "'></input>"
+        );
+        $("p[id='description'][value='" + value + "']").replaceWith(
+            "<textarea class='descInput'>" + description + "</textarea>"
+        );
+        $(".confirm-button").on("click", function (event) {
+            event.stopPropagation();
+            let data = {
+                code:$(".codeInput").val(),
+                name: $(".nameInput").val(),
+                description: $(".descInput").val(),
+            };
+            console.log(data);
+            $.ajax({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
+                },
+                data: data,
+                url: url,
+                method: "PUT",
+            }).done(() => {
+                notification("success","Ciclo editado correctamente")
+                cancelEdit(name, description, value,code);
+            }).fail(() => {
+                notification("error","No se ha podido editar el ciclo")
+
+            });
+        });
+        $(".cancel-button").on("click", function(event){
+            cancelEdit(name, description, value,code);
+
+        })
+    })
 
 });
