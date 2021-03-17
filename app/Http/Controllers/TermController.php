@@ -51,6 +51,8 @@ class TermController extends Controller
             "Created new course: " . $term->name,
             ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]
         );
+
+        return ['done' => true];
     }
 
     /**
@@ -94,10 +96,13 @@ class TermController extends Controller
         //$term->start_date = $request->start_date;
         //$term->end_date = $request->end_date;
         $term->save();
+
         Log::warning(
             "Updated course " . $old_term . "to " . $term->name,
             ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]
         );
+
+        return ['done' => true];
     }
 
     /**
@@ -110,9 +115,12 @@ class TermController extends Controller
     {
         $term = Term::findOrFail($id);
         $term->delete();
+
         Log::warning(
             "Soft-deleted course " . $term->name,
             ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]
         );
+
+        return ['done' => true];
     }
 }

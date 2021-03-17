@@ -15,13 +15,12 @@ function cancelEdit(textName, textDesc, value) {
     $(".terms > tbody > tr > td .delete-button").css("display", "block ");
     $(".terms > tbody > tr > td .edit-button").css("display", "block");
 }
-function inputNotification(text){
-    var elemento =  "<p>"+text+"</p>";
-    $(".errors").append(elemento)
+function inputNotification(text) {
+    var elemento = "<p>" + text + "</p>";
+    $(".errors").append(elemento);
 }
-function notification(type,text){
-    if (type == 'success'){
-
+function notification(type, text) {
+    if (type == "success") {
     }
 }
 $(function () {
@@ -87,12 +86,13 @@ $(function () {
                     data: data,
                     url: `/admin/cursos/${value}`,
                     method: "PUT",
-                }).done(() => {
-                    cancelEdit(name, description, value, term);
-                }).fail(() => {
-                    inputNotification("Todo guay")
-
-                });
+                })
+                    .done(() => {
+                        cancelEdit(name, description, value, term);
+                    })
+                    .fail(() => {
+                        inputNotification("Todo guay");
+                    });
             });
             $(".cancel-button").on("click", function (event) {
                 event.stopPropagation();
@@ -129,9 +129,13 @@ $(function () {
             method: "POST",
             dataType: "json",
             data: data,
-        }).done(() => {
-            // Your code here
-        });
+        })
+            .done(function (data) {
+                console.log("Hola");
+            })
+            .fail(function (data) {
+                console.log(data.responseJSON);
+            });
     });
     // Delete button redirect
     $("#delete-button").on("click", function (event) {

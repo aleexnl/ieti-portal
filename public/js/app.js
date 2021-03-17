@@ -28,7 +28,7 @@ function inputNotification(text) {
 }
 
 function notification(type, text) {
-  if (type == 'success') {}
+  if (type == "success") {}
 }
 
 $(function () {
@@ -108,7 +108,10 @@ $(function () {
       method: "POST",
       dataType: "json",
       data: data
-    }).done(function () {// Your code here
+    }).done(function (data) {
+      console.log("Hola");
+    }).fail(function (data) {
+      console.log(data.responseJSON);
     });
   }); // Delete button redirect
 
