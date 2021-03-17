@@ -24,7 +24,7 @@ function cancelEdit(textName, textDesc, value) {
 
 function inputNotification(text) {
   var elemento = "<p>" + text + "</p>";
-  $(".errors").append(elemento);
+  $(".errores").append(elemento);
 }
 
 function notification(type, text) {
@@ -69,10 +69,10 @@ $(function () {
         url: "/admin/cursos/".concat(value),
         method: "PUT"
       }).done(function () {
-        cancelEdit(name, description, value, term);
-      }).fail(function () {
         inputNotification("Todo guay");
-      });
+        console.log($("#errores"));
+        cancelEdit(name, description, value);
+      }).fail(function () {});
     });
     $(".cancel-button").on("click", function (event) {
       event.stopPropagation();
@@ -108,10 +108,10 @@ $(function () {
       method: "POST",
       dataType: "json",
       data: data
-    }).done(function (data) {
-      console.log("Hola");
-    }).fail(function (data) {
-      console.log(data.responseJSON);
+    }).done(function () {
+      inputNotification("Todo guay");
+    }).fail(function () {
+      inputNotification("Todo mal");
     });
   }); // Delete button redirect
 

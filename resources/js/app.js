@@ -15,9 +15,9 @@ function cancelEdit(textName, textDesc, value) {
     $(".terms > tbody > tr > td .delete-button").css("display", "block ");
     $(".terms > tbody > tr > td .edit-button").css("display", "block");
 }
-function inputNotification(text) {
-    var elemento = "<p>" + text + "</p>";
-    $(".errors").append(elemento);
+function inputNotification(text){
+    var elemento =  "<p>"+text+"</p>";
+    $(".errores").append(elemento)
 }
 function notification(type, text) {
     if (type == "success") {
@@ -86,13 +86,13 @@ $(function () {
                     data: data,
                     url: `/admin/cursos/${value}`,
                     method: "PUT",
-                })
-                    .done(() => {
-                        cancelEdit(name, description, value, term);
-                    })
-                    .fail(() => {
-                        inputNotification("Todo guay");
-                    });
+                }).done(() => {
+                    inputNotification("Todo guay")
+                    console.log($("#errores"))
+                    cancelEdit(name, description, value);
+                }).fail(() => {
+
+                });
             });
             $(".cancel-button").on("click", function (event) {
                 event.stopPropagation();
@@ -102,7 +102,9 @@ $(function () {
     );
     // Show form to create course
     $("#add-new-term").on("click", function (event) {
-        event.stopPropagation();
+        event.stopPropagation(
+
+        );
         $("#create-course-form").toggleClass("hidden");
         $(this).toggleClass("hidden");
     });
@@ -129,13 +131,11 @@ $(function () {
             method: "POST",
             dataType: "json",
             data: data,
-        })
-            .done(function (data) {
-                console.log("Hola");
-            })
-            .fail(function (data) {
-                console.log(data.responseJSON);
-            });
+        }).done(() => {
+            inputNotification("Todo guay")
+        }).fail(()=>{
+            inputNotification("Todo mal")
+        });
     });
     // Delete button redirect
     $("#delete-button").on("click", function (event) {
