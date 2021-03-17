@@ -4,7 +4,9 @@
     </x-slot>
     <div class="errores">
     </div>
-    <table class="w-full terms">
+    <label for="form-file" class="primary p-3 rounded-md">Importar ciclos ➤</label>
+    <input type="file" accept=".csv" name="file" id="form-file" class="hidden" />
+    <table class="w-full terms mt-4">
         <thead>
             <tr>
                 <th class="dark:bg-purple-900">Codi</th>

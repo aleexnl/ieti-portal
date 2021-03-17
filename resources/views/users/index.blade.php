@@ -2,10 +2,15 @@
     <x-slot name="header">
         {{ Breadcrumbs::render('students') }}
     </x-slot>
+
     <div class="errores">
 
     </div>
-    <div id="create-user-form" class="bg-gray-200 p-6 my-3 rounded-md hidden">
+    <label for="form-file" class="primary p-3 rounded-md">Importar alumnos ➤</label>
+    <input type="file" accept=".csv" name="file" id="form-file" class="hidden" />
+
+
+    <div id="create-user-form" class="bg-gray-200 p-6 my-3 rounded-md hidden mt-4">
         <div class="flex flex-col mb-2">
             <label for="user">Nom</label>
             <input type="text" name="user" id="user_name">
@@ -24,7 +29,7 @@
         </div>
 
     </div>
-    <table class="w-full users">
+    <table class="w-full users mt-4">
         <thead>
             <tr>
                 <th class="dark:bg-purple-900">Nom</th>
