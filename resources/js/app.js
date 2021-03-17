@@ -15,13 +15,21 @@ function cancelEdit(textName, textDesc, value) {
     $(".terms > tbody > tr > td .delete-button").css("display", "block ");
     $(".terms > tbody > tr > td .edit-button").css("display", "block");
 }
-function inputNotification(text){
-    var elemento =  "<p>"+text+"</p>";
-    $(".errores").append(elemento)
+function inputNotification(text) {
+    var elemento = "<p>" + text + "</p>";
+    $(".errores").append(elemento);
 }
 function notification(type, text) {
     if (type == "success") {
     }
+}
+function insertRow(data) {
+    let term = JSON.parse(data.term);
+    let row = $("tbody tr").first().clone().removeClass("hidden");
+    console.log($(row).attr("data-href"));
+    $(row).attr("data-href").replace("{id}", term.id); // Set term id in href
+    $(row).find("#name").attr("value", term.name); // Set term name
+    $("tbody").append(row);
 }
 $(function () {
     // Redirect to the selected table cell
@@ -86,13 +94,13 @@ $(function () {
                     data: data,
                     url: `/admin/cursos/${value}`,
                     method: "PUT",
-                }).done(() => {
-                    inputNotification("Todo guay")
-                    console.log($("#errores"))
-                    cancelEdit(name, description, value);
-                }).fail(() => {
-
-                });
+                })
+                    .done(() => {
+                        inputNotification("Todo guay");
+                        console.log($("#errores"));
+                        cancelEdit(name, description, value);
+                    })
+                    .fail(() => {});
             });
             $(".cancel-button").on("click", function (event) {
                 event.stopPropagation();
@@ -102,9 +110,7 @@ $(function () {
     );
     // Show form to create course
     $("#add-new-term").on("click", function (event) {
-        event.stopPropagation(
-
-        );
+        event.stopPropagation();
         $("#create-course-form").toggleClass("hidden");
         $(this).toggleClass("hidden");
     });
@@ -131,11 +137,15 @@ $(function () {
             method: "POST",
             dataType: "json",
             data: data,
-        }).done(() => {
-            inputNotification("Todo guay")
-        }).fail(()=>{
-            inputNotification("Todo mal")
-        });
+        })
+            .done((data) => {
+                console.log(data);
+                insertRow(data);
+                inputNotification("Todo guay");
+            })
+            .fail(() => {
+                inputNotification("Todo mal");
+            });
     });
     // Delete button redirect
     $("#delete-button").on("click", function (event) {

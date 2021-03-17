@@ -52,7 +52,7 @@ class TermController extends Controller
             ['user_id' => Auth::user()->id, 'user_email' => Auth::user()->email]
         );
 
-        return ['done' => true];
+        return response()->json(['success' => true, 'term' => $term->toJson()]);
     }
 
     /**

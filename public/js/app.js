@@ -31,6 +31,17 @@ function notification(type, text) {
   if (type == "success") {}
 }
 
+function insertRow(data) {
+  var term = JSON.parse(data.term);
+  var row = $("tbody tr").first().clone().removeClass("hidden");
+  console.log($(row).attr("data-href"));
+  $(row).attr("data-href").replace("{id}", term.id); // Set term id in href
+
+  $(row).find("#name").attr("value", term.name); // Set term name
+
+  $("tbody").append(row);
+}
+
 $(function () {
   // Redirect to the selected table cell
   $(".terms > tbody > tr[data-href]").on("click", function () {
@@ -108,7 +119,9 @@ $(function () {
       method: "POST",
       dataType: "json",
       data: data
-    }).done(function () {
+    }).done(function (data) {
+      console.log(data);
+      insertRow(data);
       inputNotification("Todo guay");
     }).fail(function () {
       inputNotification("Todo mal");
