@@ -2,6 +2,8 @@
     <x-slot name="header">
         {{ Breadcrumbs::render('career',$term,$career) }}
     </x-slot>
+    <div class="errores">
+    </div>
     <h1 class="dark:text-purple-500">¡ATENCIÓ!</h1>
     <p class="dark:text-purple-200">Esteu a punt d'eliminar {{$career->name}}, aquesta acció pot causar inconsistencies
         a

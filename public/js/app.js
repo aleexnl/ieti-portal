@@ -28,6 +28,10 @@ function notification(type, text) {
   } else if (type == "error") {
     $(".errores").append("<div class=\"w-full bg-red-200 p-3 border-2 border-red-400 rounded-lg\">\n        <p>".concat(text, "</p>\n     </div>"));
   }
+
+  setTimeout(function () {
+    $(".errores").empty();
+  }, 3000);
 }
 
 $(function () {
@@ -65,6 +69,7 @@ $(function () {
     $(".terms > tbody > tr > td button.delete-button").css("display", "none");
     var value = $(this).attr("value");
     var name = $("p[id='name'][value='" + value + "']").text();
+    $("tr[value='" + value + "']").removeAttr("data-href");
     var description = $("p[id='description'][value='" + value + "']").text();
     $("div[value='" + value + "']").find("p").after("<button class='secondary bg-gray-300 dark:bg-purple-200 dark:text-gray-900 my-1 w-full cancel-button' value='" + value + "'>Cancelar</button>");
     $("div[value='" + value + "']").find("p").after("<button class='primary bg-gray-300 dark:bg-purple-900 dark:text-white my-1 w-full confirm-button' value='" + value + "'>Confirmar</button>");
@@ -88,13 +93,14 @@ $(function () {
         url: "/admin/cursos/".concat(value),
         method: "PUT"
       }).done(function () {
-        notification("success", "Todo guay");
+        notification("success", "Curso editado correctamente");
         console.log($("#errores"));
         cancelEdit(name, description, value);
       }).fail(function () {});
     });
     $(".cancel-button").on("click", function (event) {
       event.stopPropagation();
+      notification("error", "No se ha podido editar el curso");
       cancelEdit(name, description, value);
     });
   }); // Show form to create course
@@ -130,9 +136,9 @@ $(function () {
     }).done(function () {
       $("#create-course-form").toggleClass("hidden");
       $("#add-new-term").toggleClass("hidden");
-      notification("success", "Todo guay");
+      notification("success", "Curso añadido correctamente");
     }).fail(function () {
-      notification("error", "Todo mal");
+      notification("error", "No se ha podido añadir el curso");
     });
   }); // Delete button redirect
 
@@ -158,7 +164,10 @@ $(function () {
       url: url,
       method: "DELETE",
       success: function success() {
-        window.location.href = document.referrer;
+        notification("success", "Elemento borrado perfectamente");
+        setTimeout(function () {
+          window.location.href = document.referrer;
+        }, 3000);
       },
       error: function error() {
         alert("Hi ha agut un error intentant eliminar el element seleccionat.");

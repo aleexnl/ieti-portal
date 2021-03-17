@@ -27,6 +27,10 @@ function notification(type, text) {
         <p>${text}</p>
      </div>`);
     }
+
+    setTimeout(function () {
+        $(".errores").empty();
+    }, 3000);
 }
 $(function () {
     if (
@@ -72,6 +76,7 @@ $(function () {
             );
             let value = $(this).attr("value");
             let name = $("p[id='name'][value='" + value + "']").text();
+            $("tr[value='" + value + "']").removeAttr("data-href");
             let description = $(
                 "p[id='description'][value='" + value + "']"
             ).text();
@@ -116,7 +121,7 @@ $(function () {
                     method: "PUT",
                 })
                     .done(() => {
-                        notification("success", "Todo guay");
+                        notification("success", "Curso editado correctamente");
                         console.log($("#errores"));
                         cancelEdit(name, description, value);
                     })
@@ -124,6 +129,7 @@ $(function () {
             });
             $(".cancel-button").on("click", function (event) {
                 event.stopPropagation();
+                notification("error", "No se ha podido editar el curso");
                 cancelEdit(name, description, value);
             });
         }
@@ -161,10 +167,10 @@ $(function () {
             .done(() => {
                 $("#create-course-form").toggleClass("hidden");
                 $("#add-new-term").toggleClass("hidden");
-                notification("success", "Todo guay");
+                notification("success", "Curso añadido correctamente");
             })
             .fail(() => {
-                notification("error", "Todo mal");
+                notification("error", "No se ha podido añadir el curso");
             });
     });
     // Delete button redirect
@@ -190,7 +196,10 @@ $(function () {
             url: url,
             method: "DELETE",
             success: function () {
-                window.location.href = document.referrer;
+                notification("success", "Elemento borrado perfectamente");
+                setTimeout(function () {
+                    window.location.href = document.referrer;
+                }, 3000);
             },
             error: function () {
                 alert(
