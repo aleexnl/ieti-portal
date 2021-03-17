@@ -15,6 +15,15 @@ function cancelEdit(textName, textDesc, value) {
     $(".terms > tbody > tr > td .delete-button").css("display", "block ");
     $(".terms > tbody > tr > td .edit-button").css("display", "block");
 }
+function inputNotification(text){
+    var elemento =  "<p>"+text+"</p>";
+    $(".errors").append(elemento)
+}
+function notification(type,text){
+    if (type == 'success'){
+
+    }
+}
 $(function () {
     // Redirect to the selected table cell
     $(".terms > tbody > tr[data-href]").on("click", function () {
@@ -80,6 +89,9 @@ $(function () {
                     method: "PUT",
                 }).done(() => {
                     cancelEdit(name, description, value, term);
+                }).fail(() => {
+                    inputNotification("Todo guay")
+
                 });
             });
             $(".cancel-button").on("click", function (event) {
