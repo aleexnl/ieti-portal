@@ -1,7 +1,6 @@
 <x-admin-layout>
     <x-slot name="header">
-        Cursos
-
+        {{ Breadcrumbs::render('terms') }}
     </x-slot>
     <div class="errores">
     </div>

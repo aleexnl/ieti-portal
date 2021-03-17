@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot name="header">
-        Dashboard
+        {{ Breadcrumbs::render('dashboard') }}
     </x-slot>
     <div class="errores">
     </div>

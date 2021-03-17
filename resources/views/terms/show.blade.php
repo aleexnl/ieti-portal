@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot name="header">
-        Cursos/{{$term->name}}
+        {{ Breadcrumbs::render('term', $term) }}
     </x-slot>
     <h1 class="dark:text-purple-500">¡ATENCIÓ!</h1>
     <p class="dark:text-purple-200">Esteu a punt d'eliminar {{$term->name}}, aquesta acció pot causar inconsistencies a

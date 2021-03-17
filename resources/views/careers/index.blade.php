@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot name="header">
-        Cursos/{{$term->name}}/Cicles
+        {{ Breadcrumbs::render('careers', $term) }}
     </x-slot>
     <table class="w-full terms">
         <thead>

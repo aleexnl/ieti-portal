@@ -57,7 +57,7 @@
 
     </nav>
     <main class="ml-56">
-        <h2 class="text-gray-700 ml-4 my-6 text-4xl dark:text-purple-300">{{ $header }}</h2>
+        <h2 class="text-gray-700 ml-4 py-6 text-4xl dark:text-purple-300">{{ $header }}</h2>
         <div class="container mx-auto px-5">
             {{ $slot }}
         </div>
